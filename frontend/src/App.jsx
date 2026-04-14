@@ -2,19 +2,17 @@ import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 import AppRoutes from './routes/AppRoutes'
 import Navbar from './components/layout/Navbar'
+import { Toaster } from 'react-hot-toast'
 
 function App() {
   return (
     <Router>
-      <div className="min-h-screen relative overflow-hidden bg-[#FDFDFF]">
-        {/* Decorative Background Elements */}
-        <div className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden pointer-events-none">
-          <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-primary-50 rounded-full blur-3xl opacity-60"></div>
-          <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-accent-light/5 rounded-full blur-3xl opacity-50"></div>
-        </div>
-        
+      <div className="min-h-screen bg-white selection:bg-primary-100 selection:text-primary-900">
+        <Toaster position="top-center" />
         <Navbar />
-        <AppRoutes />
+        <main>
+          <AppRoutes />
+        </main>
       </div>
     </Router>
   )

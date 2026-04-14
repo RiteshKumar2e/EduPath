@@ -45,36 +45,8 @@ const Landing = () => {
   }
 
   return (
-    <div className="landing-container">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-[100] bg-white/70 backdrop-blur-xl border-b border-slate-200/50">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2.5 group">
-            <div className="w-10 h-10 bg-slate-900 rounded-xl flex items-center justify-center text-white font-bold text-xl group-hover:scale-110 transition-transform">
-              E
-            </div>
-            <span className="text-2xl font-black tracking-tighter text-slate-900">EduPath</span>
-          </Link>
-
-          <div className="hidden lg:flex items-center gap-1 bg-slate-100/50 p-1 rounded-2xl border border-slate-200/50">
-            <a href="#features" className="px-5 py-2 text-sm font-bold text-slate-600 hover:text-slate-900 hover:bg-white rounded-xl transition-all">Features</a>
-            <a href="#tools" className="px-5 py-2 text-sm font-bold text-slate-600 hover:text-slate-900 hover:bg-white rounded-xl transition-all">Tools</a>
-            <a href="#stats" className="px-5 py-2 text-sm font-bold text-slate-600 hover:text-slate-900 hover:bg-white rounded-xl transition-all">Impact</a>
-            <a href="#faq" className="px-5 py-2 text-sm font-bold text-slate-600 hover:text-slate-900 hover:bg-white rounded-xl transition-all">FAQ</a>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <Link to="/login" className="hidden sm:block text-sm font-bold text-slate-900 hover:opacity-70 transition-opacity">
-              Sign In
-            </Link>
-            <Link to="/register">
-              <button className="px-6 py-2.5 bg-slate-900 text-white rounded-xl font-bold text-sm hover:shadow-lg hover:-translate-y-0.5 transition-all">
-                Get Started
-              </button>
-            </Link>
-          </div>
-        </div>
-      </nav>
+    <div className="landing-container pt-20">
+      {/* Navigation is now handled globally by App.jsx and the shared Navbar component */}
 
       {/* Hero Section */}
       <section className="hero-wrapper">
