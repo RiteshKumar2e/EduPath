@@ -29,36 +29,27 @@ const Landing = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2
+        staggerChildren: 0.1,
+        delayChildren: 0.1
       }
     }
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 40 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
+      transition: { duration: 1, ease: [0.16, 1, 0.3, 1] }
     }
   }
 
   return (
     <div className="landing-container pt-20">
-      {/* Navigation is now handled globally by App.jsx and the shared Navbar component */}
-
       {/* Hero Section */}
       <section className="hero-wrapper">
         <div className="hero-grid-pattern"></div>
         <div className="hero-spotlight"></div>
-        
-        {/* Mesh Background Decorations */}
-        <div className="mesh-container">
-          <div className="mesh-circle w-[600px] h-[600px] bg-primary-200/20 -top-20 -left-20 animate-float"></div>
-          <div className="mesh-circle w-[400px] h-[400px] bg-emerald-200/20 top-1/4 -right-10 animate-float-slow"></div>
-          <div className="mesh-circle w-[500px] h-[500px] bg-purple-200/10 bottom-0 left-1/4 animate-pulse-subtle"></div>
-        </div>
         
         <motion.div 
           className="hero-content"
@@ -66,205 +57,223 @@ const Landing = () => {
           animate="visible"
           variants={containerVariants}
         >
-          <motion.div variants={itemVariants} className="hero-badge-container">
-            <span className="hero-badge-tag">New</span>
-            <span className="flex items-center gap-1.5">
-              AI-Powered University Discovery is here <ChevronRight size={14} />
+          <motion.div variants={itemVariants} className="hero-badge-container group">
+            <span className="hero-badge-tag">Platform Update</span>
+            <span className="flex items-center gap-1.5 px-2">
+              AI-First University Discovery 2.0 is live <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </span>
           </motion.div>
 
           <motion.h1 variants={itemVariants} className="hero-title">
-            Your Path to <br />
-            <span className="hero-title-gradient">Dream Education</span>
+            Your Future, <br />
+            <span className="hero-title-gradient">AI-Guided.</span>
           </motion.h1>
 
           <motion.p variants={itemVariants} className="hero-description">
-            Intelligent guidance for university discovery, admission prediction, and career success. 
-            EduPath uses advanced AI to navigate your educational journey.
+            The unified ecosystem for Indian students. Discover universities, predict admissions with 94% accuracy, 
+            and secure the best education financing—all powered by advanced AI.
           </motion.p>
 
-          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-8 justify-center items-center">
             <Link to="/register" className="btn-premium group">
               <span className="btn-premium-shine"></span>
-              Start Your Journey <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+              Get Started Free <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
             </Link>
             <a href="#features" className="btn-secondary-premium group">
-              Explore Tools <Sparkles size={20} className="text-primary-600 group-hover:rotate-12 transition-transform" />
+              View Tools <Sparkles size={22} className="text-primary-600 group-hover:rotate-12 transition-all" />
             </a>
           </motion.div>
 
-          {/* Hero Visual */}
+          {/* Core Visual */}
           <motion.div 
             variants={itemVariants}
-            className="mt-20 relative max-w-5xl mx-auto"
+            className="hero-visual-container"
           >
-            <div className="relative rounded-[40px] p-2 bg-slate-200/20 border border-slate-200/50 backdrop-blur-sm shadow-2xl overflow-hidden">
+            <div className="hero-visual-frame">
               <img 
-                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop" 
-                alt="EduPath Platform" 
-                className="rounded-[32px] w-full object-cover shadow-2xl h-[300px] md:h-[500px]"
+                src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop" 
+                alt="EduPath Platform Interface" 
+                className="hero-image"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-white/10 to-transparent"></div>
             </div>
 
-            {/* Floating Elements */}
+            {/* Floating Visual Labels */}
             <motion.div 
-              animate={{ y: [0, -20, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -left-12 bottom-20 floating-card hidden lg:block"
+              animate={{ y: [0, -30, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -left-20 bottom-1/3 floating-card hidden lg:flex"
             >
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-emerald-100 rounded-2xl flex items-center justify-center text-emerald-600">
-                  <TrendingUp size={24} />
-                </div>
-                <div>
-                  <p className="text-xs font-bold text-slate-500">ADMISSION PROBABILITY</p>
-                  <p className="text-2xl font-black text-slate-900">94.8%</p>
-                </div>
+              <div className="w-14 h-14 bg-emerald-100 rounded-[20px] flex items-center justify-center text-emerald-600 shadow-inner">
+                <TrendingUp size={28} />
+              </div>
+              <div>
+                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Success Rate</p>
+                <p className="text-3xl font-black text-slate-900 tracking-tighter">94.8%</p>
               </div>
             </motion.div>
 
             <motion.div 
-              animate={{ y: [0, 20, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute -right-12 top-20 floating-card hidden lg:block"
+              animate={{ y: [0, 30, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              className="absolute -right-20 top-1/4 floating-card hidden lg:flex"
             >
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-primary-100 rounded-2xl flex items-center justify-center text-primary-600">
-                  <BrainCircuit size={24} />
-                </div>
-                <div>
-                  <p className="text-xs font-bold text-slate-500">AI MENTOR ACTIVE</p>
-                  <p className="text-lg font-black text-slate-900">Personal Guidance</p>
-                </div>
+              <div className="w-14 h-14 bg-primary-100 rounded-[20px] flex items-center justify-center text-primary-600 shadow-inner">
+                <BrainCircuit size={28} />
+              </div>
+              <div>
+                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">AI Insights</p>
+                <p className="text-2xl font-black text-slate-900 tracking-tighter">Real-time Analysis</p>
               </div>
             </motion.div>
           </motion.div>
         </motion.div>
       </section>
 
+      {/* Trust Section */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] mb-12">Trusted by students at leading institutions</p>
+          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-40 grayscale filter">
+            <h3 className="text-2xl font-black tracking-tighter">IIT DELHI</h3>
+            <h3 className="text-2xl font-black tracking-tighter">BITSPILANI</h3>
+            <h3 className="text-2xl font-black tracking-tighter">STANFORD</h3>
+            <h3 className="text-2xl font-black tracking-tighter">MIT</h3>
+            <h3 className="text-2xl font-black tracking-tighter">OXFORD</h3>
+          </div>
+        </div>
+      </section>
+
       {/* Stats Section */}
-      <section id="stats" className="py-24 bg-slate-50 border-y border-slate-200/50">
+      <section id="stats" className="py-32 bg-slate-50 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-12">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-16 md:gap-24">
             {[
-              { label: "Successful Students", value: "50K+" },
-              { label: "Partner Institutions", value: "200+" },
-              { label: "Countries Covered", value: "25+" },
-              { label: "Expert Mentors", value: "500+" }
+              { label: "Successful Admits", value: "50K+" },
+              { label: "Loan Sanctioned", value: "₹2.5Cr+" },
+              { label: "AI Predictions", value: "1.2M" },
+              { label: "Active Mentors", value: "850+" }
             ].map((stat, i) => (
               <motion.div 
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="stat-item"
+                className="text-center"
               >
-                <div className="stat-value">{stat.value}</div>
-                <div className="stat-label">{stat.label}</div>
+                <div className="text-6xl md:text-7xl font-black text-slate-950 tracking-tighter mb-4">{stat.value}</div>
+                <div className="text-slate-400 font-black uppercase tracking-[0.2em] text-[10px]">{stat.label}</div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Features Section - Bento Grid */}
-      <section id="features" className="py-32 px-6 max-w-7xl mx-auto">
-        <div id="tools" className="text-center mb-24">
-          <span className="section-label">Everything you need</span>
-          <h2 className="section-title">Intelligent Tools for <br /> Future Success</h2>
+      {/* Features Section - Premium Bento Grid */}
+      <section id="features" className="py-40 px-6 max-w-7xl mx-auto">
+        <div className="text-center mb-32">
+          <span className="section-label">A Unified Ecosystem</span>
+          <h2 className="section-title">One Platform. <br /> Infinite Possibilities.</h2>
           <p className="section-desc">
-            We've built a comprehensive suite of AI-powered tools to ensure every student 
-            finds their perfect educational path.
+            We've combined university discovery, ROI prediction, and education financing into a single, seamless experience.
           </p>
         </div>
 
         <div className="bento-grid">
-          {[
-            {
-              icon: BrainCircuit,
-              title: "Career Navigator",
-              desc: "Deep analysis of your skills and market trends to find your ideal career.",
-              className: "lg:col-span-3 lg:row-span-2 bg-gradient-to-br from-blue-50 to-white"
-            },
-            {
-              icon: TrendingUp,
-              title: "Admission AI",
-              desc: "Predict your chances at 200+ universities globally.",
-              className: "lg:col-span-3 bg-gradient-to-br from-emerald-50 to-white"
-            },
-            {
-              icon: Calculator,
-              title: "Smart ROI",
-              desc: "Calculate the real financial return on your education.",
-              className: "lg:col-span-2 bg-gradient-to-br from-orange-50 to-white"
-            },
-            {
-              icon: Banknote,
-              title: "Finance Match",
-              desc: "Get matched with the best educational loan options.",
-              className: "lg:col-span-2 bg-gradient-to-br from-purple-50 to-white"
-            },
-            {
-              icon: Clock,
-              title: "Timeline Hub",
-              desc: "Never miss a deadline with automated tracking.",
-              className: "lg:col-span-2 bg-gradient-to-br from-rose-50 to-white"
-            }
-          ].map((item, i) => (
-            <motion.div
-              key={i}
-              className={`bento-card ${item.className}`}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-            >
-              <div className="bento-card-bg"></div>
-              <div className="bento-card-icon">
-                <item.icon size={28} />
-              </div>
-              <h3 className="bento-card-title">{item.title}</h3>
-              <p className="bento-card-text">{item.desc}</p>
-              <div className="mt-8 flex items-center gap-2 text-primary-600 font-bold group-hover:gap-4 transition-all cursor-pointer">
-                Learn interaction <ArrowRight size={18} />
-              </div>
-            </motion.div>
-          ))}
+          <motion.div
+            className="bento-card md:col-span-4 bg-slate-50"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="bento-icon-wrapper">
+              <BrainCircuit size={40} />
+            </div>
+            <h3 className="bento-title">AI Career Navigator</h3>
+            <p className="bento-text">
+              Our neural engine analyzes your academic profile, extracurriculars, and market trends to recommend programs with the highest growth potential.
+            </p>
+            <div className="flex items-center gap-2 text-slate-950 font-black text-sm uppercase tracking-widest hover:gap-4 transition-all cursor-pointer">
+              Discovery Engine <ArrowRight size={18} />
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="bento-card md:col-span-2 bg-primary-600 text-white border-0"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+          >
+            <div className="bento-icon-wrapper !bg-white/10 !text-white shadow-none">
+              <TrendingUp size={40} />
+            </div>
+            <h3 className="bento-title !text-white">Admission AI</h3>
+            <p className="bento-text !text-white/70">
+              Get an instant probability score for over 2,000 global universities based on your specific profile.
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="bento-card md:col-span-2"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+          >
+            <div className="bento-icon-wrapper">
+              <Calculator size={40} />
+            </div>
+            <h3 className="bento-title">Smart ROI</h3>
+            <p className="bento-text">
+              Predict your lifetime earnings and calculate exactly when your education investment will pay off.
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="bento-card md:col-span-4 bg-slate-950 text-white border-0"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+          >
+            <div className="bento-icon-wrapper !bg-white/10 !text-white shadow-none">
+              <Banknote size={40} />
+            </div>
+            <h3 className="bento-title !text-white">Financing Suite</h3>
+            <p className="bento-text !text-white/60">
+              Instant loan eligibility and matching with leading lenders. Get pre-approved and manage your entire application process digitally.
+            </p>
+            <div className="flex items-center gap-2 text-white font-black text-sm uppercase tracking-widest hover:gap-4 transition-all cursor-pointer">
+              Get Pre-Approved <ArrowRight size={18} />
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Trust Section */}
-      <section className="py-32 bg-slate-900 text-white overflow-hidden relative">
-        <div className="absolute top-0 left-0 w-full h-full opacity-10">
-          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary-500 rounded-full blur-[200px]"></div>
-          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-emerald-500 rounded-full blur-[200px]"></div>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
-          <h2 className="text-4xl md:text-6xl font-black mb-16 tracking-tighter">Trusted by Students Everywhere</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-left">
+      {/* Testimonials */}
+      <section className="py-40 bg-slate-50 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <h2 className="text-4xl md:text-7xl font-black mb-24 tracking-tighter">Loved by the next generation.</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
             {[
-              { text: "EduPath helped me find a university I hadn't even considered. The AI prediction was spot on!", author: "Sarah Jenkins", role: "Graduate Student" },
-              { text: "The ROI calculator is a game changer. I could clearly see the financial impact of my choices.", author: "James Chen", role: "Undergraduate" },
-              { text: "Finally, a platform that understands student needs. The AI Mentor is always there for me.", author: "Priya Sharma", role: "Masters Applicant" }
-            ].map((testimonial, i) => (
+              { text: "EduPath didn't just find me a university; it found me a career path I'm passionate about. The AI prediction was spot-on.", author: "Arjun Mehta", role: "Masters, CMU" },
+              { text: "The ROI tool showed me the true value of my degree. Secured my loan in 48 hours thanks to their Financing Suite.", author: "Sneha Rao", role: "MBA Applicant" },
+              { text: "Having a 24/7 AI Mentor made the stressful application season feel like a breeze. Highly recommended!", author: "Vikram Singh", role: "Undergrad, Stanford" }
+            ].map((t, i) => (
               <motion.div 
                 key={i}
-                className="bg-white/5 backdrop-blur-lg border border-white/10 p-10 rounded-[32px]"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                className="bg-white p-12 rounded-[48px] border border-slate-100 shadow-sm"
+                whileHover={{ y: -10 }}
               >
-                <div className="flex gap-1 mb-6 text-yellow-400">
-                  {[...Array(5)].map((_, i) => <Star key={i} size={20} fill="currentColor" />)}
+                <div className="flex gap-1 mb-8 text-amber-500">
+                   {[...Array(5)].map((_, i) => <Star key={i} size={18} fill="currentColor" />)}
                 </div>
-                <p className="text-xl font-medium mb-10 leading-relaxed text-slate-300 italic">"{testimonial.text}"</p>
+                <p className="text-xl font-bold mb-10 text-slate-700 leading-relaxed italic">"{t.text}"</p>
                 <div>
-                  <p className="font-bold text-lg">{testimonial.author}</p>
-                  <p className="text-primary-400 text-sm font-bold uppercase tracking-widest">{testimonial.role}</p>
+                   <p className="font-black text-slate-950 text-lg">{t.author}</p>
+                   <p className="text-primary-600 font-black text-[10px] uppercase tracking-widest mt-1">{t.role}</p>
                 </div>
               </motion.div>
             ))}
@@ -272,119 +281,79 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section id="faq" className="py-32 max-w-4xl mx-auto px-6">
-        <div className="text-center mb-24">
-          <span className="section-label">Common Questions</span>
-          <h2 className="section-title">You Ask, We Answer</h2>
-        </div>
-
-        <div className="space-y-6">
-          {[
-            {
-              q: "How does the AI prediction work?",
-              a: "We analyze millions of historical data points and current trends to provide highly accurate admission probability scores."
-            },
-            {
-              q: "Is my data secure?",
-              a: "We use enterprise-grade encryption and strictly follow data protection regulations. Your information is 100% private."
-            },
-            {
-              q: "Can I use it for free?",
-              a: "Yes! Our core features are completely free. We also offer premium plans for more advanced analytics."
-            }
-          ].map((faq, i) => (
-            <motion.div 
-              key={i}
-              className="faq-card"
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-            >
-              <div className="faq-question">
-                {faq.q}
-                <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-primary-600 group-hover:text-white transition-colors">
-                  <span className="text-xl font-bold">+</span>
-                </div>
-              </div>
-              <p className="faq-answer">{faq.a}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
       {/* Final CTA */}
-      <section className="py-32 px-6">
-        <div className="max-w-7xl mx-auto bg-slate-900 rounded-[56px] p-12 md:p-24 relative overflow-hidden group">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary-600/20 to-emerald-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
-          
-          <div className="relative z-10 text-center max-w-3xl mx-auto">
-            <h2 className="text-4xl md:text-7xl font-black text-white mb-10 tracking-tighter">Ready to Build Your Future?</h2>
-            <p className="text-xl text-slate-400 mb-14 font-medium leading-relaxed">
-              Join 50,000+ students who are already using EduPath to achieve their educational goals.
+      <section className="py-40 px-6">
+        <div className="cta-container">
+          <div className="cta-mesh"></div>
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="max-w-3xl mx-auto"
+          >
+            <h2 className="text-4xl md:text-8xl font-black text-white mb-10 tracking-tighter">Ready to lead?</h2>
+            <p className="text-xl text-slate-400 mb-16 font-bold tracking-tight px-4">
+              Join 50,000+ students navigating their higher education with the world's most intelligent ecosystem.
             </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link to="/register" className="btn-premium group !bg-white !text-slate-900 !px-12">
-                Get Started Now <Rocket size={20} className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
+            <div className="flex flex-col sm:flex-row gap-8 justify-center items-center">
+              <Link to="/register" className="btn-premium group !bg-white !text-slate-950 !px-12 w-full sm:w-auto">
+                Join Now <Rocket size={20} className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-all" />
               </Link>
-              <Link to="/contact" className="btn-secondary-premium !bg-transparent !border-white/20 !text-white !px-12 hover:!bg-white/10">
-                Contact Sales
+              <Link to="/chat-mentor" className="text-white hover:text-primary-400 font-black text-sm uppercase tracking-[0.2em] transition-colors">
+                Speak to AI Mentor
               </Link>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-24 bg-white border-t border-slate-200/50">
+      <footer className="py-32 bg-white border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-12 mb-20">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-16 md:gap-24 mb-32">
             <div className="col-span-2">
-              <Link to="/" className="flex items-center gap-2.5 mb-8">
-                <div className="w-9 h-9 bg-slate-900 rounded-lg flex items-center justify-center text-white font-bold text-lg">E</div>
+              <Link to="/" className="flex items-center gap-3 mb-10">
+                <div className="w-10 h-10 bg-slate-900 rounded-xl flex items-center justify-center text-white font-black text-xl">E</div>
                 <span className="text-2xl font-black tracking-tighter text-slate-900">EduPath</span>
               </Link>
-              <p className="text-slate-500 font-medium leading-relaxed max-w-sm">
-                Empowering the next generation of students with AI-driven educational intelligence.
+              <p className="text-slate-500 font-bold leading-relaxed max-w-sm tracking-tight text-lg">
+                The AI-First student ecosystem empowering the next generation of global leaders.
               </p>
             </div>
             <div>
-              <h4 className="font-bold text-slate-900 mb-6">Discovery</h4>
-              <ul className="space-y-4 text-slate-500 font-medium">
-                <li><a href="#" className="hover:text-primary-600 transition-colors">Universities</a></li>
-                <li><a href="#" className="hover:text-primary-600 transition-colors">Career Paths</a></li>
-                <li><a href="#" className="hover:text-primary-600 transition-colors">Loan Matching</a></li>
+              <h4 className="font-black text-slate-950 text-xs uppercase tracking-widest mb-10">Intelligence</h4>
+              <ul className="space-y-6">
+                <li><a className="footer-link">Career Navigator</a></li>
+                <li><a className="footer-link">Admission Predictor</a></li>
+                <li><a className="footer-link">ROI Calculator</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-bold text-slate-900 mb-6">Resources</h4>
-              <ul className="space-y-4 text-slate-500 font-medium">
-                <li><a href="#" className="hover:text-primary-600 transition-colors">Blog</a></li>
-                <li><a href="#" className="hover:text-primary-600 transition-colors">Support</a></li>
-                <li><a href="#" className="hover:text-primary-600 transition-colors">API Docs</a></li>
+              <h4 className="font-black text-slate-950 text-xs uppercase tracking-widest mb-10">Ecosystem</h4>
+              <ul className="space-y-6">
+                <li><a className="footer-link">Loan Matching</a></li>
+                <li><a className="footer-link">Document Vault</a></li>
+                <li><a className="footer-link">AI Mentor</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-bold text-slate-900 mb-6">Legal</h4>
-              <ul className="space-y-4 text-slate-500 font-medium">
-                <li><a href="#" className="hover:text-primary-600 transition-colors">Privacy</a></li>
-                <li><a href="#" className="hover:text-primary-600 transition-colors">Terms</a></li>
-                <li><a href="#" className="hover:text-primary-600 transition-colors">Cookie Policy</a></li>
+              <h4 className="font-black text-slate-950 text-xs uppercase tracking-widest mb-10">Support</h4>
+              <ul className="space-y-6">
+                <li><a className="footer-link">Help Center</a></li>
+                <li><a className="footer-link">Resources</a></li>
+                <li><a className="footer-link">Privacy</a></li>
               </ul>
             </div>
           </div>
           
-          <Divider className="bg-slate-200/50 mb-12" />
+          <Divider className="opacity-50 mb-12" />
           
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <p className="text-slate-500 font-bold text-sm">© 2024 EduPath AI. Built with precision for the future.</p>
-            <div className="flex items-center gap-6">
-              {[Globe, Users, Zap].map((Icon, i) => (
-                <div key={i} className="w-10 h-10 bg-slate-50 border border-slate-200/50 rounded-xl flex items-center justify-center text-slate-900 hover:bg-slate-900 hover:text-white transition-all cursor-pointer">
-                  <Icon size={18} />
-                </div>
-              ))}
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+            <p className="text-slate-400 font-black text-[10px] uppercase tracking-widest">© 2024 EduPath AI Ecosystem. Designed for Impact.</p>
+            <div className="flex items-center gap-10">
+              <Globe size={18} className="text-slate-300 hover:text-slate-900 cursor-pointer transition-colors" />
+              <Users size={18} className="text-slate-300 hover:text-slate-900 cursor-pointer transition-colors" />
+              <Zap size={18} className="text-slate-300 hover:text-slate-900 cursor-pointer transition-colors" />
             </div>
           </div>
         </div>

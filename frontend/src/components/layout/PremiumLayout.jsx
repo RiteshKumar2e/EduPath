@@ -18,28 +18,23 @@ import {
   X,
   ChevronRight,
   Sparkles,
-  Trophy,
-  Zap
+  Trophy
 } from 'lucide-react'
 
 const SidebarLink = ({ to, icon: Icon, label, active, onClick }) => (
   <Link
     to={to}
     onClick={onClick}
-    className={`flex items-center gap-3 px-4 py-3 rounded-2xl font-bold transition-all duration-300 ${
-      active 
-        ? 'bg-primary-600 text-white shadow-lg shadow-primary-100 scale-[1.02]' 
-        : 'text-slate-500 hover:bg-slate-100 hover:text-slate-900'
-    }`}
+    className="flex items-center gap-3 px-4 py-3 rounded-2xl font-bold transition-all"
+    style={{
+      backgroundColor: active ? 'var(--primary-600)' : 'transparent',
+      color: active ? 'white' : 'var(--slate-500)',
+      boxShadow: active ? '0 8px 16px rgba(11, 126, 229, 0.2)' : 'none',
+      transform: active ? 'scale(1.02)' : 'scale(1)'
+    }}
   >
     <Icon size={20} />
     <span className="text-sm">{label}</span>
-    {active && (
-      <motion.div 
-        layoutId="active-pill"
-        className="ml-auto w-1.5 h-1.5 rounded-full bg-white" 
-      />
-    )}
   </Link>
 )
 
@@ -61,11 +56,14 @@ const DashboardLayout = ({ children, user }) => {
   const isActive = (path) => location.pathname === path
 
   return (
-    <div className="min-h-screen bg-slate-50 flex">
+    <div className="flex bg-slate-50 min-h-screen">
       {/* Sidebar - Desktop */}
-      <aside className="hidden lg:flex flex-col w-72 bg-white border-r border-slate-200 p-6 fixed inset-y-0 z-50">
+      <aside 
+        className="hidden lg:flex flex-col w-72 bg-white fixed inset-y-0 h-full p-6 z-50 shadow-sm"
+        style={{ borderRight: '1px solid var(--slate-200)', left: 0 }}
+      >
         <Link to="/" className="flex items-center gap-3 mb-10 px-2">
-          <div className="w-10 h-10 bg-slate-900 rounded-xl flex items-center justify-center text-white shadow-xl">
+          <div className="w-10 h-10 bg-slate-900 rounded-xl flex items-center justify-center text-white shadow-lg">
             <Sparkles size={20} />
           </div>
           <span className="text-2xl font-black tracking-tighter text-slate-900">EduPath</span>
@@ -82,9 +80,9 @@ const DashboardLayout = ({ children, user }) => {
           ))}
         </div>
 
-        <div className="pt-6 mt-6 border-t border-slate-100 space-y-2">
+        <div className="pt-6 mt-6 border-t border-slate-100 flex flex-col gap-2">
           <SidebarLink to="/settings" icon={Settings} label="Settings" active={isActive('/settings')} />
-          <button className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl font-bold text-red-500 hover:bg-red-50 transition-colors">
+          <button className="flex items-center gap-3 px-4 py-3 rounded-2xl font-bold text-red-500 hover:bg-red-50 transition-all text-left w-full">
             <LogOut size={20} />
             <span className="text-sm">Logout</span>
           </button>
@@ -94,15 +92,22 @@ const DashboardLayout = ({ children, user }) => {
       {/* Main Content Area */}
       <div className="flex-1 lg:pl-72 flex flex-col min-h-screen">
         {/* Top Header */}
-        <header className="h-20 bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-40 px-6 sm:px-10 flex items-center justify-between">
+        <header 
+          className="h-20 bg-white sticky top-0 z-40 px-6 sm:px-10 flex items-center justify-between shadow-sm"
+          style={{ 
+            backgroundColor: 'rgba(255, 255, 255, 0.8)',
+            backdropFilter: 'blur(12px)',
+            borderBottom: '1px solid var(--slate-200)'
+          }}
+        >
           <div className="flex items-center gap-4">
             <button 
               onClick={() => setSidebarOpen(true)}
-              className="lg:hidden p-2 bg-slate-100 rounded-xl text-slate-600"
+              className="lg:hidden p-2 bg-slate-50 text-slate-600 rounded-xl"
             >
               <Menu size={20} />
             </button>
-            <div className="hidden sm:flex items-center gap-2 text-sm font-bold text-slate-400 uppercase tracking-widest">
+            <div className="hidden sm:flex items-center gap-2 text-xs font-black text-slate-400 uppercase tracking-widest">
               <span>Student</span>
               <ChevronRight size={14} />
               <span className="text-slate-900">{navLinks.find(l => isActive(l.path))?.label || 'Overview'}</span>
@@ -110,28 +115,28 @@ const DashboardLayout = ({ children, user }) => {
           </div>
 
           <div className="flex items-center gap-6">
-            <div className="hidden md:flex items-center gap-2 px-4 py-2 bg-slate-100 rounded-xl text-slate-500 focus-within:bg-white focus-within:ring-2 focus-within:ring-primary-100 transition-all">
+            <div className="hidden md:flex items-center gap-3 px-4 py-2.5 bg-slate-100 rounded-xl text-slate-500 border-2 border-transparent focus-within:bg-white focus-within:border-primary-100 transition-all">
               <Search size={18} />
-              <input type="text" placeholder="Search tools..." className="bg-transparent border-none outline-none text-sm font-medium w-40" />
+              <input type="text" placeholder="Search insights..." className="bg-transparent border-none outline-none text-sm font-bold w-40 text-slate-900" />
             </div>
 
             <div className="flex items-center gap-4">
-              <button className="relative p-2.5 bg-slate-100 rounded-xl text-slate-600 hover:bg-slate-200 transition-colors">
+              <button className="relative p-2.5 bg-slate-100 rounded-xl text-slate-500 transition-all hover:bg-slate-200">
                 <Bell size={20} />
                 <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
               </button>
               
-              <div className="flex items-center gap-3 pl-4 border-l border-slate-200">
+              <div className="flex items-center gap-3 pl-4 border-l border-slate-100">
                 <div className="text-right hidden sm:block">
-                  <p className="text-sm font-bold text-slate-900">{user?.name || 'Student'}</p>
+                  <p className="text-sm font-black text-slate-900 leading-tight">{user?.name || 'Student'}</p>
                   <div className="flex items-center gap-1 justify-end">
-                    <Trophy size={12} className="text-amber-500" />
-                    <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Gold Rank</span>
+                    <Trophy size={10} className="text-amber-500" />
+                    <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Scholar Rank</span>
                   </div>
                 </div>
                 <img 
                   src={user?.avatar || 'https://ui-avatars.com/api/?name=User'} 
-                  className="w-10 h-10 rounded-xl border-2 border-primary-100"
+                  className="w-10 h-10 rounded-xl shadow-md border-2 border-white"
                   alt="Avatar"
                 />
               </div>
@@ -141,7 +146,9 @@ const DashboardLayout = ({ children, user }) => {
 
         {/* Content */}
         <main className="p-6 sm:p-10 flex-1">
-          {children}
+          <div className="max-w-6xl mx-auto">
+            {children}
+          </div>
         </main>
       </div>
 
@@ -154,13 +161,14 @@ const DashboardLayout = ({ children, user }) => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSidebarOpen(false)}
-              className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[60] lg:hidden"
+              className="fixed inset-0 z-100 lg:hidden"
+              style={{ backgroundColor: 'rgba(15, 23, 42, 0.4)', backdropFilter: 'blur(4px)' }}
             />
             <motion.aside 
-              initial={{ x: -300 }}
-              animate={{ x: 0 }}
-              exit={{ x: -300 }}
-              className="fixed inset-y-0 left-0 w-72 bg-white z-[70] lg:hidden p-6 shadow-2xl"
+              initial={{ x: -100, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: -100, opacity: 0 }}
+              className="fixed inset-y-0 left-0 w-72 bg-white z-100 lg:hidden p-6 shadow-2xl h-full flex flex-col"
             >
               <div className="flex items-center justify-between mb-10">
                 <Link to="/" className="flex items-center gap-3">
@@ -169,11 +177,11 @@ const DashboardLayout = ({ children, user }) => {
                   </div>
                   <span className="text-2xl font-black tracking-tighter text-slate-900">EduPath</span>
                 </Link>
-                <button onClick={() => setSidebarOpen(false)} className="p-2 bg-slate-100 rounded-xl">
+                <button onClick={() => setSidebarOpen(false)} className="p-2 bg-slate-50 rounded-xl text-slate-900 border-none">
                   <X size={20} />
                 </button>
               </div>
-              <div className="space-y-2">
+              <div className="flex-1 space-y-2">
                 {navLinks.map((link) => (
                   <SidebarLink 
                     key={link.path} 

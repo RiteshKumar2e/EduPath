@@ -13,37 +13,39 @@ const Button = ({
   loading = false,
   ...props
 }) => {
-  const baseStyles = 'inline-flex items-center justify-center gap-2 font-semibold rounded-lg transition-all duration-200 focus-ring cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed'
-
+  // Styles are now handled by standard CSS classes defined in index.css
+  // but we build the final string here.
+  
+  const baseStyles = 'inline-flex items-center justify-center gap-2 font-bold rounded-xl transition-all duration-300 cursor-pointer'
+  
   const variants = {
-    primary: 'bg-primary-600 text-white hover:bg-primary-700 shadow-sm hover:shadow-md active:scale-95',
-    secondary: 'bg-slate-100 text-slate-900 border border-slate-200 hover:bg-slate-50 hover:border-slate-300 active:scale-95',
-    ghost: 'text-primary-600 hover:bg-primary-50 border border-transparent active:scale-95',
-    outline: 'border-2 border-primary-300 text-primary-600 hover:bg-primary-50 active:scale-95',
-    danger: 'bg-error text-white hover:bg-red-700 shadow-sm hover:shadow-md active:scale-95',
-    success: 'bg-success text-white hover:bg-emerald-700 shadow-sm hover:shadow-md active:scale-95',
+    primary: 'bg-primary-600 text-white shadow-lg shadow-primary-100 hover:-translate-y-1 hover:shadow-xl',
+    secondary: 'bg-slate-100 text-slate-900 hover:bg-slate-200',
+    ghost: 'text-primary-600 hover:bg-primary-50',
+    outline: 'border-2 border-primary-600 text-primary-600 hover:bg-primary-50',
+    danger: 'bg-red-500 text-white hover:bg-red-600',
+    success: 'bg-emerald-500 text-white hover:bg-emerald-600',
   }
 
   const sizes = {
-    sm: 'px-3 py-1.5 text-sm',
-    md: 'px-4 py-2 text-base',
-    lg: 'px-6 py-3 text-lg',
-    xl: 'px-8 py-3.5 text-lg',
+    sm: 'px-4 py-2 text-xs',
+    md: 'px-6 py-3 text-sm',
+    lg: 'px-8 py-4 text-base',
+    xl: 'px-10 py-5 text-lg',
   }
 
-  const finalClassName = `${baseStyles} ${variants[variant]} ${sizes[size]} ${fullWidth ? 'w-full' : ''} ${className}`
+  const finalClassName = `${baseStyles} ${variants[variant]} ${sizes[size]} ${fullWidth ? 'w-full' : ''} ${className} ${disabled || loading ? 'opacity-50 cursor-not-allowed shadow-none hover:translate-y-0' : ''}`
 
   return (
     <motion.button
-      whileHover={disabled ? {} : { y: -2 }}
-      whileTap={disabled ? {} : { scale: 0.98 }}
+      whileTap={disabled || loading ? {} : { scale: 0.98 }}
       className={finalClassName}
       disabled={disabled || loading}
       {...props}
     >
       {loading ? (
         <>
-          <span className="inline-block w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+          <span className="loading-spinner" />
           {children}
         </>
       ) : (
