@@ -2,240 +2,174 @@
 @import './globals.css';
 
 /* ============================================================================
-  LANDING PAGE - ACETERNITY STYLE HERO & MOTION-RICH SECTIONS
+  LANDING PAGE - PREMIUM MODERN STYLING
 ============================================================================ */
 
 .landing-container {
   @apply relative w-full bg-white selection:bg-primary-100 selection:text-primary-900 overflow-hidden;
-  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(240,249,255,0.4) 100%);
+  font-family: 'Outfit', sans-serif;
 }
 
 /* ============================================================================
-  HERO SECTION - ACETERNITY STYLE
+  HERO SECTION - ACETERNITY / MAGIC UI STYLE
 ============================================================================ */
 
 .hero-wrapper {
-  @apply relative min-h-screen flex flex-col items-center justify-center px-6 pt-32 pb-20;
-  background: radial-gradient(ellipse 80% 80% at 50% 0%, rgba(14, 165, 233, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+  @apply relative min-h-screen flex flex-col items-center justify-center px-6 pt-32 pb-20 overflow-hidden;
+  background: radial-gradient(circle at 50% -20%, rgba(11, 126, 229, 0.15) 0%, rgba(255, 255, 255, 0) 60%);
+}
+
+.hero-grid-pattern {
+  @apply absolute inset-0 -z-10 opacity-[0.03];
+  background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse at center, black, transparent 80%);
+}
+
+.hero-spotlight {
+  @apply absolute -top-40 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-primary-400/20 rounded-full blur-[120px] -z-20;
 }
 
 .hero-content {
-  @apply relative z-10 max-w-5xl mx-auto text-center;
-  animation: slide-up 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  @apply relative z-10 max-w-6xl mx-auto text-center;
 }
 
-.hero-badge {
-  @apply inline-flex items-center gap-3 mb-8;
-  animation: fade-in 0.6s ease-out 0.2s forwards;
-  opacity: 0;
+.hero-badge-container {
+  @apply inline-flex items-center gap-2 mb-8 p-1 pr-4 bg-slate-900/5 backdrop-blur-md border border-slate-900/10 rounded-full text-sm font-semibold text-slate-900 shadow-sm hover:bg-slate-900/10 transition-all cursor-pointer;
 }
 
-.hero-badge-content {
-  @apply bg-primary-50/70 backdrop-blur-xl border border-primary-100/60 text-primary-700 px-6 py-2.5 rounded-full text-sm font-bold uppercase tracking-[0.15em] shadow-premium transition-all duration-300 hover:bg-primary-100/80 hover:border-primary-200/80 hover:shadow-soft-xl hover:scale-105;
+.hero-badge-tag {
+  @apply bg-primary-600 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider;
 }
 
 .hero-title {
-  @apply text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight;
-  animation: slide-up 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s forwards;
-  opacity: 0;
-  background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 50%, #06b6d4 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  @apply text-6xl md:text-8xl lg:text-9xl font-black mb-8 leading-[1.1] tracking-tighter text-slate-900;
 }
 
-.hero-subtitle {
-  @apply text-lg md:text-2xl text-slate-600 max-w-2xl mx-auto mb-12 leading-relaxed;
-  animation: slide-up 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s forwards;
-  opacity: 0;
-  font-weight: 500;
-  letter-spacing: 0.3px;
+.hero-title-gradient {
+  @apply bg-gradient-to-r from-primary-600 via-primary-500 to-primary-700 bg-clip-text text-transparent;
 }
 
-.hero-cta-group {
-  @apply flex flex-col md:flex-row gap-6 justify-center items-center;
-  animation: slide-up 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards;
-  opacity: 0;
-}
-
-.btn-hero-primary {
-  @apply px-10 py-5 bg-gradient-to-r from-primary-600 to-primary-500 text-white rounded-[32px] font-bold text-lg shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 active:scale-95;
-}
-
-.btn-hero-secondary {
-  @apply px-10 py-5 bg-white/70 backdrop-blur-md border border-white/40 text-primary-600 rounded-[32px] font-bold text-lg shadow-glass hover:bg-white/90 hover:border-white/60 hover:shadow-soft-xl transition-all duration-300;
-}
-
-/* Grid Background */
-.grid-bg {
-  background-image: linear-gradient(to right, #f1f5f9 1px, transparent 1px),
-    linear-gradient(to bottom, #f1f5f9 1px, transparent 1px);
-  background-size: 4rem 4rem;
-  mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, #000 70%, transparent 100%);
-  @apply absolute inset-0 -z-10 opacity-40;
-}
-
-.hero-glow {
-  @apply absolute -top-1/2 -right-1/4 w-96 h-96 bg-primary-200/30 rounded-full blur-[150px] pointer-events-none;
-  animation: float 20s ease-in-out infinite;
+.hero-description {
+  @apply text-xl md:text-2xl text-slate-500 max-w-3xl mx-auto mb-12 leading-relaxed font-medium;
 }
 
 /* ============================================================================
-  BENTO GRID - REACT BITS DEV STYLE
+  PREMIUM BUTTONS
 ============================================================================ */
 
-.bento-section {
-  @apply relative max-w-7xl mx-auto px-6 py-32;
+.btn-premium {
+  @apply relative inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-900 text-white rounded-2xl font-bold text-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-primary-500/20 hover:-translate-y-1 active:scale-95;
 }
 
-.bento-section-title {
-  @apply text-center mb-20;
+.btn-premium-shine {
+  @apply absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shine;
 }
 
-.bento-section-title h2 {
-  @apply text-4xl md:text-5xl font-black mb-4;
-  background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.btn-secondary-premium {
+  @apply relative inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-slate-900 border border-slate-200 rounded-2xl font-bold text-lg transition-all duration-300 hover:bg-slate-50 hover:border-slate-300 hover:shadow-xl hover:-translate-y-1 active:scale-95;
 }
 
-.bento-section-title p {
-  @apply text-xl text-slate-600 max-w-2xl mx-auto;
-  font-weight: 500;
+/* ============================================================================
+  FEATURE SECTION - BENTO STYLE
+============================================================================ */
+
+.section-label {
+  @apply inline-block px-4 py-1.5 bg-primary-50 text-primary-600 rounded-full text-sm font-bold uppercase tracking-widest mb-4;
+}
+
+.section-title {
+  @apply text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight;
+}
+
+.section-desc {
+  @apply text-lg md:text-xl text-slate-500 max-w-2xl mx-auto mb-20 font-medium;
 }
 
 .bento-grid {
-  @apply grid grid-cols-1 md:grid-cols-12 gap-6;
+  @apply grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-6;
 }
 
-.bento-item {
-  @apply relative overflow-hidden rounded-[48px] p-10 md:p-14 border border-slate-100 bg-white/70 backdrop-blur-md shadow-premium transition-all duration-700 hover:shadow-2xl hover:-translate-y-3 hover:border-primary-100 group;
+.bento-card {
+  @apply relative overflow-hidden rounded-[32px] p-8 border border-slate-200 bg-white shadow-sm transition-all duration-500 hover:shadow-2xl hover:border-primary-100 group;
 }
 
-.bento-item::after {
-  content: '';
-  @apply absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500;
-  background: radial-gradient(circle at 30% 30%, rgba(14, 165, 233, 0.1) 0%, transparent 50%);
-  pointer-events: none;
-}
-
-.bento-item-large {
-  @apply col-span-1 md:col-span-8;
-}
-
-.bento-item-small {
-  @apply col-span-1 md:col-span-4;
+.bento-card-bg {
+  @apply absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000;
+  background: radial-gradient(circle at center, rgba(11, 126, 229, 0.05) 0%, transparent 70%);
 }
 
 .bento-card-icon {
-  @apply text-5xl mb-6 transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-2;
+  @apply w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center text-slate-900 mb-6 transition-all duration-500 group-hover:bg-primary-600 group-hover:text-white group-hover:scale-110 group-hover:rotate-3;
 }
 
 .bento-card-title {
-  @apply text-2xl md:text-3xl font-bold mb-4 text-slate-900;
+  @apply text-2xl font-bold text-slate-900 mb-3 group-hover:text-primary-600 transition-colors;
 }
 
-.bento-card-desc {
-  @apply text-slate-600 text-lg leading-relaxed font-medium;
-}
-
-.bento-visual {
-  @apply absolute -right-10 -bottom-10 w-40 h-40 bg-gradient-to-br from-primary-100/40 to-primary-200/20 rounded-full blur-3xl transition-all duration-1000 group-hover:scale-150 group-hover:blur-2xl;
+.bento-card-text {
+  @apply text-slate-500 leading-relaxed font-medium;
 }
 
 /* ============================================================================
-  FEATURE CARDS - PREMIUM GLASS STYLE
+  FLOATING CARDS & DECORATIONS
 ============================================================================ */
 
-.feature-grid {
-  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+.floating-card {
+  @apply bg-white/80 backdrop-blur-xl border border-white/40 shadow-2xl p-6 rounded-3xl z-20;
 }
 
-.feature-card {
-  @apply relative overflow-hidden rounded-[40px] p-10 bg-white/60 backdrop-blur-xl border border-white/40 shadow-glass transition-all duration-500 hover:shadow-soft-2xl hover:-translate-y-2;
+.mesh-container {
+  @apply absolute inset-0 -z-30 overflow-hidden;
 }
 
-.feature-card::before {
-  content: '';
-  @apply absolute -top-1/2 -right-1/2 w-full h-full bg-gradient-to-br from-primary-100/30 to-transparent rounded-full blur-3xl pointer-events-none transition-all duration-700 group-hover:scale-150;
-}
-
-.feature-icon {
-  @apply w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-100 to-primary-50 flex items-center justify-center text-2xl mb-6 shadow-premium transition-all duration-300 hover:shadow-glow;
-}
-
-.feature-title {
-  @apply text-xl font-bold text-slate-900 mb-3;
-}
-
-.feature-text {
-  @apply text-slate-600 text-sm leading-relaxed;
+.mesh-circle {
+  @apply absolute rounded-full blur-[100px] opacity-40;
 }
 
 /* ============================================================================
-  STATS SECTION
+  FAQ STYLES
 ============================================================================ */
 
-.stats-container {
-  @apply relative max-w-6xl mx-auto px-6 py-16;
+.faq-card {
+  @apply border border-slate-200 bg-white rounded-3xl p-8 transition-all duration-300 hover:border-primary-300 hover:shadow-xl cursor-pointer group;
 }
 
-.stats-grid {
-  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6;
+.faq-question {
+  @apply flex items-center justify-between text-xl font-bold text-slate-900 group-hover:text-primary-600 transition-colors;
 }
 
-.stat-card {
-  @apply relative overflow-hidden rounded-[40px] p-8 bg-white/70 backdrop-blur-lg border border-white/30 shadow-premium transition-all duration-500 hover:shadow-soft-xl hover:-translate-y-1;
-  animation: slide-up 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+.faq-answer {
+  @apply mt-4 text-slate-500 leading-relaxed font-medium overflow-hidden transition-all duration-300;
 }
 
-.stat-card:nth-child(1) { animation-delay: 0.1s; opacity: 0; }
-.stat-card:nth-child(2) { animation-delay: 0.2s; opacity: 0; }
-.stat-card:nth-child(3) { animation-delay: 0.3s; opacity: 0; }
-.stat-card:nth-child(4) { animation-delay: 0.4s; opacity: 0; }
+/* ============================================================================
+  STATS STYLES
+============================================================================ */
 
-.stat-number {
-  @apply text-4xl md:text-5xl font-black mb-2;
-  background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.stat-item {
+  @apply text-center p-8;
+}
+
+.stat-value {
+  @apply text-5xl md:text-6xl font-black text-slate-900 mb-2 tracking-tighter;
 }
 
 .stat-label {
-  @apply text-slate-600 font-semibold;
+  @apply text-slate-500 font-bold uppercase tracking-widest text-sm;
 }
 
 /* ============================================================================
-  CTA SECTION
+  ANIMATIONS
 ============================================================================ */
 
-.cta-section {
-  @apply relative max-w-4xl mx-auto px-6 py-24 rounded-[56px] overflow-hidden;
-  background: linear-gradient(135deg, rgba(14, 165, 233, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%);
+@keyframes shine {
+  0% { transform: translateX(-100%) skewX(-15deg); }
+  100% { transform: translateX(200%) skewX(-15deg); }
 }
 
-.cta-section::before {
-  content: '';
-  @apply absolute -top-1/2 -right-1/4 w-96 h-96 bg-primary-200/20 rounded-full blur-3xl pointer-events-none;
-}
-
-.cta-content {
-  @apply relative z-10 text-center;
-}
-
-.cta-section h2 {
-  @apply text-4xl md:text-5xl font-black mb-6;
-  background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.cta-section p {
-  @apply text-xl text-slate-600 mb-8 max-w-2xl mx-auto;
-  font-weight: 500;
+.animate-shine {
+  animation: shine 1.5s infinite;
 }
 
 /* ============================================================================
@@ -244,15 +178,6 @@
 
 @media (max-width: 768px) {
   .hero-title {
-    @apply text-4xl;
-  }
-  
-  .hero-subtitle {
-    @apply text-base;
-  }
-  
-  .bento-item-large,
-  .bento-item-small {
-    @apply col-span-1;
+    @apply text-5xl;
   }
 }
