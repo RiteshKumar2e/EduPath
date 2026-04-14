@@ -1,13 +1,48 @@
 import React from 'react'
-import { motion } from 'framer-motion'
-import { ArrowRight, Sparkles, ShieldCheck, Globe, GraduationCap, Banknote, BrainCircuit, Rocket } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { Spotlight } from '../../components/ui/Spotlight'
-import '../../styles/Landing.css'
+import { motion } from 'framer-motion'
+import {
+  ArrowRight,
+  CheckCircle2,
+  Globe,
+  BrainCircuit,
+  Banknote,
+  TrendingUp,
+  Users,
+  Zap,
+  Star,
+  MessageSquare,
+  ChevronDown,
+  Quote,
+  Calculator,
+  Clock,
+} from 'lucide-react'
+import Button from '../../components/ui/premium/Button'
+import { Card, Badge, EmptyState, Divider } from '../../components/ui/premium/index'
 
 const Landing = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.1,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: 'easeOut' },
+    },
+  }
+
   return (
-    <div className="landing-container">
+    <div className="min-h-screen bg-white">
       {/* Background & Effects */}
       <div className="grid-bg"></div>
       <Spotlight className="spotlight-blue" fill="#0ea5e9" />

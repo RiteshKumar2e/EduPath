@@ -1,183 +1,311 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { 
-  Search, Bell, User, GraduationCap, 
-  TrendingUp, Calendar, CheckCircle2, 
-  ArrowUpRight, BrainCircuit, Banknote, 
-  FileText, Clock, Globe
+import {
+  TrendingUp,
+  Calendar,
+  CheckCircle2,
+  ArrowUpRight,
+  BrainCircuit,
+  Banknote,
+  FileText,
+  Clock,
+  Target,
+  Zap,
+  Book,
 } from 'lucide-react'
-import { 
-  AreaChart, Area, XAxis, YAxis, 
-  CartesianGrid, Tooltip, ResponsiveContainer 
-} from 'recharts'
-import '../../styles/Dashboard.css'
-
-const data = [
-  { name: 'Jan', score: 65 },
-  { name: 'Feb', score: 70 },
-  { name: 'Mar', score: 78 },
-  { name: 'Apr', score: 85 },
-]
+import { AreaChart,Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, BarChart, Bar, Legend } from 'recharts'
+import Button from '../../components/ui/premium/Button'
+import { Card, StatCard, Badge, ProgressBar, Divider, Section } from '../../components/ui/premium/index'
+import { DashboardLayout } from '../../components/layout/PremiumLayout'
 
 const Dashboard = () => {
+  // Mock data
+  const scoreTrend = [
+    { name: 'Jan', score: 65 },
+    { name: 'Feb', score: 70 },
+    { name: 'Mar', score: 78 },
+    { name: 'Apr', score: 82 },
+    { name: 'May', score: 85 },
+    { name: 'Jun', score: 87 },
+  ]
+
+  const financeData = [
+    { name: 'Saved', value: 250000 },
+    { name: 'Available', value: 450000 },
+  ]
+
+  const timelineData = [
+    { name: 'Applications', done: 3, total: 8 },
+    { name: 'Documents', done: 18, total: 20 },
+    { name: 'Essays', done: 2, total: 5 },
+  ]
+
+  const universities = [
+    { name: 'MIT', match: 94, type: 'Reach' },
+    { name: 'Stanford', match: 87, type: 'Target' },
+    { name: 'UC Berkeley', match: 92, type: 'Target' },
+  ]
+
+  const user = {
+    name: 'Anmol',
+    email: 'anmol@example.com',
+    avatar: 'https://ui-avatars.com/api/?name=Anmol&background=0b7ee5&color=fff',
+  }
+
   return (
-    <div className="dashboard-container">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
-          <div>
-            <h1 className="text-4xl font-black text-slate-900 leading-tight">Welcome, Anmol! 👋</h1>
-            <p className="text-slate-500 font-bold mt-1">AI has updated 3 of your recommendations.</p>
-          </div>
-          <div className="flex items-center gap-6">
-            <div className="relative group">
-              <input 
-                type="text" 
-                placeholder="Search..." 
-                className="search-input"
+    <DashboardLayout user={user}>
+      <div className="bg-slate-50 min-h-screen py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-8"
+          >
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div>
+                <h1 className="text-3xl font-bold text-slate-900">Welcome back, {user.name}! 👋</h1>
+                <p className="text-slate-600 mt-1">Here's your education journey snapshot</p>
+              </div>
+              <Badge variant="primary">📊 Profile Strength: 92%</Badge>
+            </div>
+          </motion.div>
+
+          {/* Key Metrics Grid */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ staggerChildren: 0.1 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"
+          >
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+              <StatCard
+                icon={TrendingUp}
+                label="Loan Readiness"
+                value="84%"
+                trend="+5%"
+                color="primary"
+                className="hover:shadow-lg transition-all"
               />
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
-            </div>
-            <div className="w-14 h-14 bg-white border border-slate-100 rounded-2xl flex items-center justify-center text-slate-400 shadow-sm cursor-pointer hover:bg-slate-50 transition-all">
-              <Bell size={24} />
-            </div>
-            <div className="w-14 h-14 bg-primary-100 rounded-3xl border-2 border-primary-200 flex items-center justify-center font-black text-primary-600 overflow-hidden shadow-lg shadow-primary-100">
-              <img src="https://ui-avatars.com/api/?name=Anmol&background=0ea5e9&color=fff" alt="User" />
-            </div>
-          </div>
-        </div>
+            </motion.div>
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
+              <StatCard
+                icon={Target}
+                label="University Shortlist"
+                value="12"
+                color="success"
+              />
+            </motion.div>
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
+              <StatCard
+                icon={CheckCircle2}
+                label="Profile Completion"
+                value="92%"
+                color="primary"
+              />
+            </motion.div>
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
+              <StatCard
+                icon={Clock}
+                label="Deadlines"
+                value="3"
+                trend="This month"
+                color="warning"
+              />
+            </motion.div>
+          </motion.div>
 
-        {/* Top Grid: Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
-          <StatCard title="Loan Readiness" value="84%" trend="+5%" icon={<TrendingUp size={22} />} />
-          <StatCard title="Uni Shortlist" value="12" icon={<GraduationCap size={22} />} />
-          <StatCard title="Profile Prep" value="92%" icon={<CheckCircle2 size={22} />} />
-          <StatCard title="Deadlines" value="3" color="text-red-500" icon={<Clock size={22} />} />
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-          {/* Main Column */}
-          <div className="lg:col-span-2 space-y-10">
-            {/* AI Insights Widget */}
-            <div className="main-widget bg-gradient-to-br from-primary-600 to-indigo-700 text-white border-none shadow-[0_30px_60px_-15px_rgba(14,165,233,0.3)]">
-              <div className="relative z-10">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="p-3 bg-white/20 backdrop-blur-xl rounded-2xl">
-                    <BrainCircuit size={28} />
+          <div className="grid lg:grid-cols-3 gap-8">
+            {/* Main Content - Left Column */}
+            <div className="lg:col-span-2 space-y-8">
+              {/* AI Insights Widget */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                <Card className="p-6 bg-gradient-to-br from-primary-600 to-primary-700 text-white border-0">
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="p-2 bg-white/20 rounded-lg">
+                          <BrainCircuit size={24} />
+                        </div>
+                        <h3 className="text-xl font-bold">AI Career Insight</h3>
+                      </div>
+                      <p className="text-primary-50 mb-6 max-w-lg">Your profile matches 94% with the new AI-specialized Masters in Zurich. Your skills in data science and ML are highly aligned.</p>
+                      <Button variant="secondary" size="md" icon={ArrowUpRight} iconPosition="right">
+                        View Recommendations
+                      </Button>
+                    </div>
                   </div>
-                  <h2 className="text-2xl font-black">AI Career Discovery</h2>
-                </div>
-                <p className="text-primary-50 mb-8 max-w-lg text-lg font-medium opacity-90">Your profile matches 94% with the new AI specialized Masters in Zurich. Want to see the full breakdown?</p>
-                <button className="px-8 py-4 bg-white text-primary-600 font-black rounded-2xl shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center gap-3">
-                  Check Matches <ArrowUpRight size={22} />
-                </button>
-              </div>
-              <Sparkles className="absolute right-[-40px] bottom-[-40px] text-white/10 w-80 h-80 -rotate-12" />
+                </Card>
+              </motion.div>
+
+              {/* Admission Score Trend */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+              >
+                <Card className="p-6">
+                  <h3 className="text-lg font-bold text-slate-900 mb-6">Admission Score Trend</h3>
+                  <ResponsiveContainer width="100%" height={300}>
+                    <AreaChart data={scoreTrend}>
+                      <defs>
+                        <linearGradient id="colorScore" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="5%" stopColor="#0b7ee5" stopOpacity={0.8}/>
+                          <stop offset="95%" stopColor="#0b7ee5" stopOpacity={0.01}/>
+                        </linearGradient>
+                      </defs>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                      <XAxis dataKey="name" stroke="#9ca3af" />
+                      <YAxis stroke="#9ca3af" />
+                      <Tooltip
+                        contentStyle={{
+                          backgroundColor: '#ffffff',
+                          border: '1px solid #e5e7eb',
+                          borderRadius: '8px',
+                          boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1)',
+                        }}
+                      />
+                      <Area type="monotone" dataKey="score" stroke="#0b7ee5" strokeWidth={2} fillOpacity={1} fill="url(#colorScore)" />
+                    </AreaChart>
+                  </ResponsiveContainer>
+                </Card>
+              </motion.div>
+
+              {/* Application Progress */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+              >
+                <Card className="p-6">
+                  <h3 className="text-lg font-bold text-slate-900 mb-6">Application Checklist</h3>
+                  <div className="space-y-4">
+                    {timelineData.map((item, i) => (
+                      <div key={i}>
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-sm font-semibold text-slate-900">{item.name}</span>
+                          <span className="text-xs font-semibold text-slate-500">{item.done}/{item.total}</span>
+                        </div>
+                        <ProgressBar value={item.done} max={item.total} color="primary" size="md" showLabel={false} />
+                      </div>
+                    ))}
+                  </div>
+                </Card>
+              </motion.div>
             </div>
 
-            {/* Application Progress Chart */}
-            <div className="main-widget">
-              <div className="flex items-center justify-between mb-10">
-                <div>
-                  <h3 className="text-2xl font-black text-slate-800">Growth Analysis</h3>
-                  <p className="text-sm text-slate-400 font-bold uppercase tracking-wider">Profile strength trend</p>
-                </div>
-                <button className="bg-slate-50 text-slate-500 px-5 py-2 rounded-xl text-xs font-black">LAST 4 MONTHS</button>
-              </div>
-              <div className="h-[300px] w-full">
-                <ResponsiveContainer width="100%" height="100%">
-                  <AreaChart data={data}>
-                    <defs>
-                      <linearGradient id="colorScore" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#0ea5e9" stopOpacity={0.15}/>
-                        <stop offset="95%" stopColor="#0ea5e9" stopOpacity={0}/>
-                      </linearGradient>
-                    </defs>
-                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-                    <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: '#94a3b8', fontSize: 13, fontWeight: '700'}} dy={15} />
-                    <YAxis hide />
-                    <Tooltip 
-                      contentStyle={{ borderRadius: '24px', border: 'none', boxShadow: '0 20px 40px -10px rgba(0,0,0,0.1)', padding: '15px' }}
-                    />
-                    <Area 
-                      type="monotone" 
-                      dataKey="score" 
-                      stroke="#0ea5e9" 
-                      strokeWidth={4} 
-                      fillOpacity={1} 
-                      fill="url(#colorScore)" 
-                    />
-                  </AreaChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-          </div>
+            {/* Sidebar - Right Column */}
+            <div className="space-y-8">
+              {/* Quick Actions */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.25 }}
+              >
+                <Section title="Quick Actions">
+                  <div className="space-y-3">
+                    <Button variant="primary" fullWidth icon={BrainCircuit} iconPosition="left">
+                      Career Navigator
+                    </Button>
+                    <Button variant="secondary" fullWidth icon={TrendingUp} iconPosition="left">
+                      Admission Score
+                    </Button>
+                    <Button variant="secondary" fullWidth icon={Banknote} iconPosition="left">
+                      Loan Options
+                    </Button>
+                  </div>
+                </Section>
+              </motion.div>
 
-          {/* Sidebar Column */}
-          <div className="space-y-10">
-            {/* Quick Actions */}
-            <div className="main-widget p-8">
-              <h3 className="text-xl font-black text-slate-800 mb-8">Quick Intelligence</h3>
-              <div className="grid grid-cols-2 gap-5">
-                <QuickTool icon={<Banknote className="text-indigo-500" />} label="ROI Calc" />
-                <QuickTool icon={<TrendingUp className="text-blue-500" />} label="Admit Tool" />
-                <QuickTool icon={<FileText className="text-orange-500" />} label="Doc Boss" />
-                <QuickTool icon={<Globe className="text-green-500" />} label="Visa Help" />
-              </div>
-            </div>
+              {/* Top Universities */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+              >
+                <Section title="Top Matches">
+                  <div className="space-y-3">
+                    {universities.map((uni, i) => (
+                      <Card key={i} className="p-4">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <p className="font-semibold text-slate-900">{uni.name}</p>
+                            <Badge variant="slate" size="sm" className="mt-1">{uni.type}</Badge>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-lg font-bold text-primary-600">{uni.match}%</p>
+                            <p className="text-xs text-slate-500">match</p>
+                          </div>
+                        </div>
+                      </Card>
+                    ))}
+                  </div>
+                </Section>
+              </motion.div>
 
-            {/* Upcoming Deadlines */}
-            <div className="main-widget p-8">
-              <div className="flex items-center justify-between mb-8">
-                <h3 className="text-xl font-black text-slate-800">Deadlines</h3>
-                <Calendar size={20} className="text-slate-400" />
-              </div>
-              <div className="space-y-6">
-                <DeadlineItem date="Apr 20" title="TU Munich SOP" category="Academics" />
-                <DeadlineItem date="May 05" title="Bank Statement" category="Financing" color="bg-orange-100 text-orange-600" />
-                <DeadlineItem i={3} date="May 12" title="IELTS Booking" category="Exams" color="bg-purple-100 text-purple-600" />
-              </div>
+              {/* Upcomng Deadlines */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.35 }}
+              >
+                <Section title="Upcoming Deadlines">
+                  <div className="space-y-2">
+                    {[
+                      { date: 'Jan 15', task: 'MIT Application' },
+                      { date: 'Jan 22', task: 'Stanford Essays' },
+                      { date: 'Feb 1', task: 'Final Documents' },
+                    ].map((item, i) => (
+                      <Card key={i} className="p-3 flex items-center gap-2">
+                        <Calendar size={16} className="text-primary-600 flex-shrink-0" />
+                        <div className="flex-grow min-w-0">
+                          <p className="text-xs font-semibold text-slate-600">{item.date}</p>
+                          <p className="text-sm font-semibold text-slate-900 truncate">{item.task}</p>
+                        </div>
+                      </Card>
+                    ))}
+                  </div>
+                </Section>
+              </motion.div>
+
+              {/* Financing Overview */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+              >
+                <Section title="Financing Overview">
+                  <Card className="p-4 bg-gradient-to-br from-emerald-50 to-slate-50">
+                    <div className="space-y-3">
+                      <div>
+                        <p className="text-xs font-semibold text-slate-600 mb-1">Pre-Approved Limit</p>
+                        <p className="text-2xl font-bold text-slate-900">₹52,00,000</p>
+                      </div>
+                      <Divider />
+                      <div className="grid grid-cols-2 gap-3">
+                        <div>
+                          <p className="text-xs text-slate-600">Interest Rate</p>
+                          <p className="font-bold text-slate-900">6.5% - 8.9%</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-slate-600">Tenure</p>
+                          <p className="font-bold text-slate-900">7 - 15 Years</p>
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
+                </Section>
+              </motion.div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </DashboardLayout>
   )
 }
-
-const StatCard = ({ title, value, trend, icon, color = "text-primary-600" }) => (
-  <div className="stat-card">
-    <div className="flex items-center gap-4 mb-4">
-      <div className={`p-3 rounded-2xl bg-slate-50 ${color}`}>{icon}</div>
-      <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{title}</p>
-    </div>
-    <div className="flex items-end justify-between">
-      <p className="text-3xl font-black text-slate-800">{value}</p>
-      {trend && <span className="text-xs font-black text-green-500 bg-green-50 px-3 py-1 rounded-full">{trend}</span>}
-    </div>
-  </div>
-)
-
-const QuickTool = ({ icon, label }) => (
-  <button className="flex flex-col items-center justify-center p-6 bg-slate-50 rounded-3xl border border-slate-100 hover:bg-white hover:border-primary-200 hover:shadow-xl hover:shadow-primary-50 transition-all gap-4 group">
-    <div className="transition-transform group-hover:scale-110">{icon}</div>
-    <span className="text-xs font-black text-slate-500 uppercase tracking-tighter">{label}</span>
-  </button>
-)
-
-const DeadlineItem = ({ date, title, category, color = "bg-blue-100 text-blue-600" }) => (
-  <div className="flex items-start gap-4 p-4 border border-transparent hover:border-slate-50 hover:bg-slate-50/50 rounded-2xl transition-all">
-    <div className="text-center min-w-[50px]">
-      <p className="text-[10px] font-extrabold text-slate-400 uppercase">{date.split(' ')[0]}</p>
-      <p className="text-2xl font-black text-slate-800 leading-none">{date.split(' ')[1]}</p>
-    </div>
-    <div className="flex-1">
-      <p className="text-base font-black text-slate-800 leading-none mb-2">{title}</p>
-      <span className={`text-[10px] font-black px-3 py-1 rounded-full ${color} uppercase tracking-tight`}>{category}</span>
-    </div>
-  </div>
-)
-
-const Sparkles = ({ className }) => <Clock className={className} /> // Dummy replacement
 
 export default Dashboard
