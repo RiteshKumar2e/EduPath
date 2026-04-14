@@ -12,26 +12,13 @@ import {
   Zap,
   Star,
   MessageSquare,
-  ChevronDown,
-  Quote,
   Calculator,
   Clock,
 } from 'lucide-react'
 import Button from '../../components/ui/premium/Button'
-import { Card, Badge, EmptyState, Divider } from '../../components/ui/premium/index'
+import { Card, Badge, Divider } from '../../components/ui/premium/index'
 
 const Landing = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.1,
-      },
-    },
-  }
-
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -43,164 +30,291 @@ const Landing = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Background & Effects */}
-      <div className="grid-bg"></div>
-      <Spotlight className="spotlight-blue" fill="#0ea5e9" />
-      
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+          <Link to="/" className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center text-white font-bold">
+              E
+            </div>
+            <span className="text-lg font-bold text-slate-900">EduPath</span>
+          </Link>
+
+          <div className="hidden md:flex items-center gap-8">
+            <a href="#features" className="text-sm font-medium text-slate-600 hover:text-primary-600 transition-colors">Features</a>
+            <a href="#tools" className="text-sm font-medium text-slate-600 hover:text-primary-600 transition-colors">Tools</a>
+            <a href="#testimonials" className="text-sm font-medium text-slate-600 hover:text-primary-600 transition-colors">Success Stories</a>
+            <a href="#faq" className="text-sm font-medium text-slate-600 hover:text-primary-600 transition-colors">FAQ</a>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <Link to="/login">
+              <Button variant="ghost">Sign In</Button>
+            </Link>
+            <Link to="/register">
+              <Button variant="primary">Get Started</Button>
+            </Link>
+          </div>
+        </div>
+      </nav>
+
       {/* Hero Section */}
-      <section className="hero-wrapper">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16 relative z-10">
-          <div className="flex-1 text-center md:text-left">
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="glass-accent"
-            >
-              ✨ The Future of Student Engagement
-            </motion.div>
-            
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-6xl md:text-8xl font-black text-slate-900 leading-[1] mb-8"
-            >
-              Empowering <br />
-              <span className="text-gradient">Student Ambition.</span>
-            </motion.h1>
+      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-50 to-white">
+        <motion.div
+          className="max-w-6xl mx-auto"
+          initial="hidden"
+          animate="visible"
+          variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
+        >
+          <motion.div variants={itemVariants} className="text-center mb-12">
+            <Badge variant="slate" className="mb-6">
+              🎓 The Future of Student Success
+            </Badge>
+            <h1 className="text-5xl md:text-6xl font-bold text-slate-900 leading-tight mb-6">
+              Empower Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-700">Student Journey</span>
+            </h1>
+            <p className="text-xl text-slate-600 max-w-2xl mx-auto mb-8 leading-relaxed">
+              An intelligent ecosystem designed to guide students from university discovery through successful loan conversion. AI-powered insights, real-time financing options, and personalized recommendations.
+            </p>
+          </motion.div>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-xl text-slate-500 mb-12 max-w-xl mx-auto md:mx-0 leading-relaxed font-medium"
-            >
-              Unified ecosystem for global education discovery, admission probability, and premium financing choices.
-            </motion.p>
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+            <Link to="/register">
+              <Button variant="primary" size="lg" icon={ArrowRight} iconPosition="right">
+                Start Your Journey
+              </Button>
+            </Link>
+            <a href="#demo">
+              <Button variant="secondary" size="lg">
+                Watch Demo
+              </Button>
+            </a>
+          </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-col sm:flex-row items-center gap-6 justify-center md:justify-start"
-            >
-              <Link to="/register" className="w-full sm:w-auto px-10 py-5 bg-primary-600 text-white rounded-3xl font-black shadow-2xl shadow-primary-200 flex items-center justify-center gap-3 hover:bg-primary-700 hover:-translate-y-1.5 transition-all text-lg">
-                Get Started <ArrowRight size={22} />
-              </Link>
-              <button className="w-full sm:w-auto px-10 py-5 bg-white text-slate-800 border-2 border-slate-100 rounded-3xl font-black shadow-lg flex items-center justify-center gap-3 hover:bg-slate-50 hover:border-slate-200 transition-all text-lg">
-                Explore Tech
-              </button>
-            </motion.div>
-          </div>
-
-          <div className="flex-1 w-full max-w-[600px] relative">
-            {/* Main 3D Styled Card */}
-            <motion.div
-              initial={{ opacity: 0, rotateY: 20, scale: 0.9 }}
-              animate={{ opacity: 1, rotateY: 0, scale: 1 }}
-              transition={{ duration: 1, delay: 0.5 }}
-              className="relative rounded-[48px] bg-white p-6 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.12)] border border-slate-50"
-            >
-              <img 
-                src="https://images.unsplash.com/photo-1541339907198-e08756ebafe1?q=80&w=2670&auto=format&fit=crop" 
-                alt="University Life" 
-                className="w-full h-[400px] object-cover rounded-[40px] grayscale-[0.2] hover:grayscale-0 transition-all duration-700"
+          {/* Hero Image */}
+          <motion.div variants={itemVariants} className="relative">
+            <div className="bg-gradient-to-b from-primary-50 to-slate-100 rounded-2xl p-1 overflow-hidden shadow-lg">
+              <img
+                src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1470&auto=format&fit=crop"
+                alt="Students collaborating"
+                className="w-full h-full rounded-lg object-cover"
               />
-              
-              {/* Floating 2D Widgets */}
-              <motion.div 
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -right-8 top-12 bg-white p-6 rounded-3xl shadow-2xl border border-slate-50 min-w-[220px]"
-              >
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="w-10 h-10 bg-green-100 text-green-600 rounded-xl flex items-center justify-center">
-                    <ShieldCheck size={20} />
-                  </div>
-                  <span className="text-xs font-black text-slate-400 uppercase">Visa Ready</span>
-                </div>
-                <div className="h-2 w-full bg-slate-100 rounded-full mb-2">
-                  <div className="h-full bg-green-500 w-[85%] rounded-full"></div>
-                </div>
-                <p className="text-sm font-bold text-slate-800">85% Documentation Done</p>
-              </motion.div>
-
-              <motion.div 
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute -left-8 bottom-12 bg-slate-900 text-white p-6 rounded-3xl shadow-2xl min-w-[200px]"
-              >
-                <p className="text-[10px] font-black uppercase text-primary-400 mb-2">Financing Live</p>
-                <p className="text-2xl font-black">₹52,00,000</p>
-                <p className="text-xs text-slate-400 mt-1">Pre-approved Loan</p>
-              </motion.div>
+            </div>
+            {/* Floating Card 1 */}
+            <motion.div
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 4, repeat: Infinity }}
+              className="absolute -left-4 bottom-10 bg-white rounded-xl shadow-lg p-4 max-w-xs border border-slate-100"
+            >
+              <p className="text-xs font-semibold text-slate-600 mb-2">AI MATCH SCORE</p>
+              <div className="flex items-baseline gap-2">
+                <span className="text-2xl font-bold text-slate-900">94%</span>
+                <span className="text-xs text-emerald-600 font-semibold">↑ 12% this month</span>
+              </div>
             </motion.div>
+
+            {/* Floating Card 2 */}
+            <motion.div
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 4, repeat: Infinity, delay: 1 }}
+              className="absolute -right-4 top-20 bg-white rounded-xl shadow-lg p-4 max-w-xs border border-slate-100"
+            >
+              <p className="text-xs font-semibold text-slate-600 mb-2">LOAN OPTIONS</p>
+              <p className="text-xl font-bold text-slate-900">₹52L Available</p>
+            </motion.div>
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* Trust Indicators */}
+      <section className="py-12 px-4 sm:px-6 lg:px-8 bg-slate-50">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col sm:flex-row items-center justify-around gap-8">
+            <div className="text-center">
+              <p className="text-3xl font-bold text-slate-900">50,000+</p>
+              <p className="text-slate-600">Students Helped</p>
+            </div>
+            <div className="text-center">
+              <p className="text-3xl font-bold text-slate-900">200+</p>
+              <p className="text-slate-600">Partner Universities</p>
+            </div>
+            <div className="text-center">
+              <p className="text-3xl font-bold text-slate-900">₹500Cr+</p>
+              <p className="text-slate-600">Financing Facilitated</p>
+            </div>
+            <div className="text-center">
+              <p className="text-3xl font-bold text-slate-900">4.9★</p>
+              <p className="text-slate-600">Rating on TrustPilot</p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Bento Grid Features Section */}
-      <section className="bg-slate-50/50 py-32 border-y border-slate-100 relative overflow-hidden">
-        <div className="bento-grid">
-          <div className="col-span-1 md:col-span-4 mb-8 text-center md:text-left">
-            <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-4">Unified Modules</h2>
-            <p className="text-lg text-slate-500 font-medium">Powering every step of your international education journey.</p>
+      {/* Features Section */}
+      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8">
+        <motion.div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Everything You Need to Succeed</h2>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">Comprehensive tools and insights designed for every stage of your educational journey</p>
           </div>
 
-          <BentoItem 
-            className="bento-item-large"
-            icon={<BrainCircuit className="text-primary-600" size={32} />}
-            title="AI Career Navigator"
-            description="Deep analysis of your skills, interests, and budget to find the perfect global match."
-            tag="AI-POWERED"
-          />
-          <BentoItem 
-            icon={<Rocket className="text-orange-500" size={32} />}
-            title="Admission Predictor"
-            description="Real-time data calibration for your admit chances."
-            tag="V2.0"
-          />
-          <BentoItem 
-            icon={<Banknote className="text-green-600" size={32} />}
-            title="Loan Engine"
-            description="Compare and secure funding without hassle."
-            tag="PREMIUM"
-          />
-          <BentoItem 
-            icon={<GraduationCap className="text-purple-600" size={32} />}
-            title="Timeline Gen"
-            description="Automated roadmap for your Fall 2025 intake."
-          />
-          <BentoItem 
-            className="bento-item-large"
-            icon={<Globe className="text-blue-600" size={32} />}
-            title="Document Vault"
-            description="One-click verification and secure storage for all your sensitive academic and financial records."
-            tag="SECURE"
-          />
-        </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: BrainCircuit,
+                title: 'AI Career Navigator',
+                description: 'Discover career paths aligned with your strengths and ambitions through intelligent analysis',
+              },
+              {
+                icon: TrendingUp,
+                title: 'Admission Predictor',
+                description: 'Get real-time admission probability scores with detailed insights and recommendations',
+              },
+              {
+                icon: Calculator,
+                title: 'ROI Calculator',
+                description: 'Analyze the financial return on your education investment with precision',
+              },
+              {
+                icon: Clock,
+                title: 'Timeline Generator',
+                description: 'Automated application timelines keeping you on track with important deadlines',
+              },
+              {
+                icon: Banknote,
+                title: 'Smart Financing',
+                description: 'Compare loan offers and find the best financing options tailored to you',
+              },
+              {
+                icon: MessageSquare,
+                title: 'AI Mentor Chat',
+                description: '24/7 AI guidance answering all your questions about education and financing',
+              },
+            ].map((feature, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="group"
+              >
+                <Card className="h-full p-6 hover:shadow-lg transition-all">
+                  <div className="mb-4 p-3 bg-primary-50 rounded-lg w-fit group-hover:bg-primary-100 transition-colors">
+                    <feature.icon className="text-primary-600" size={28} />
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-900 mb-2">{feature.title}</h3>
+                  <p className="text-slate-600">{feature.description}</p>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </section>
+
+      {/* CTA Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-primary-600">
+        <motion.div
+          className="max-w-4xl mx-auto text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Transform Your Educational Journey?</h2>
+          <p className="text-lg text-primary-50 mb-8">Join thousands of students succeeding with EduPath. Start your journey to your dream university today.</p>
+          <Link to="/register">
+            <Button variant="secondary" size="lg" icon={ArrowRight} iconPosition="right">
+              Get Started Free
+            </Button>
+          </Link>
+        </motion.div>
+      </section>
+
+      {/* FAQ Section */}
+      <section id="faq" className="py-20 px-4 sm:px-6 lg:px-8">
+        <motion.div className="max-w-3xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Frequently Asked Questions</h2>
+          </div>
+
+          <div className="space-y-4">
+            {[
+              {
+                q: 'How accurate is your admission prediction?',
+                a: 'Our AI model has 89% accuracy based on historical data from 500+ universities. Individual results may vary based on profile strength.',
+              },
+              {
+                q: 'Is there a cost to use EduPath?',
+                a: 'Basic features are free forever. Premium features start at ₹999/month with 7-day free trial.',
+              },
+              {
+                q: 'Which universities do you cover?',
+                a: 'We cover 200+ universities across UK, USA, Canada, Australia, and other countries.',
+              },
+              {
+                q: 'How do loan offers work?',
+                a: 'We connect you with verified lenders. Compare offers and apply directly through our platform.',
+              },
+            ].map((faq, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: i * 0.05 }}
+              >
+                <Card className="p-6">
+                  <h3 className="font-semibold text-slate-900 mb-2">{faq.q}</h3>
+                  <p className="text-slate-600">{faq.a}</p>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-slate-900 text-slate-400 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            <div>
+              <Link to="/" className="flex items-center gap-2 mb-4">
+                <div className="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center text-white font-bold">
+                  E
+                </div>
+                <span className="text-lg font-bold text-white">EduPath</span>
+              </Link>
+              <p className="text-sm">Empowering students to reach their educational dreams.</p>
+            </div>
+            <div>
+              <h4 className="font-semibold text-white mb-4">Product</h4>
+              <ul className="space-y-2 text-sm">
+                <li><a href="#" className="hover:text-white transition">Features</a></li>
+                <li><a href="#" className="hover:text-white transition">Pricing</a></li>
+                <li><a href="#" className="hover:text-white transition">Security</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold text-white mb-4">Company</h4>
+              <ul className="space-y-2 text-sm">
+                <li><a href="#" className="hover:text-white transition">About</a></li>
+                <li><a href="#" className="hover:text-white transition">Blog</a></li>
+                <li><a href="#" className="hover:text-white transition">Careers</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold text-white mb-4">Legal</h4>
+              <ul className="space-y-2 text-sm">
+                <li><a href="#" className="hover:text-white transition">Privacy</a></li>
+                <li><a href="#" className="hover:text-white transition">Terms</a></li>
+                <li><a href="#" className="hover:text-white transition">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+          <Divider className="bg-slate-700 mb-8" />
+          <p className="text-center text-sm">© 2024 EduPath. All rights reserved.</p>
+        </div>
+      </footer>
     </div>
   )
 }
-
-const BentoItem = ({ className = "", icon, title, description, tag }) => (
-  <motion.div 
-    whileHover={{ scale: 0.98 }}
-    className={`bento-item ${className}`}
-  >
-    <div className="flex flex-col h-full">
-      <div className="mb-6 flex items-center justify-between">
-        <div className="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center group-hover:bg-primary-50 transition-colors">
-          {icon}
-        </div>
-        {tag && <span className="px-3 py-1 bg-slate-100 text-slate-500 rounded-full text-[10px] font-black uppercase tracking-tighter">{tag}</span>}
-      </div>
-      <h3 className="text-2xl font-black text-slate-800 mb-3">{title}</h3>
-      <p className="text-slate-500 font-medium leading-relaxed">{description}</p>
-    </div>
-  </motion.div>
-)
 
 export default Landing
