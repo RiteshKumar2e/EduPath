@@ -1,0 +1,23 @@
+.loan-container {
+  @apply pt-24 pb-12 px-6 min-h-screen bg-[#FDFDFF];
+}
+
+.fintech-card {
+  @apply bg-white p-10 rounded-[48px] border border-slate-100 shadow-premium w-full transition-all duration-500 hover:shadow-2xl;
+}
+
+.result-box-dark {
+  @apply p-10 bg-slate-900 rounded-[48px] text-white overflow-hidden relative shadow-2xl;
+}
+
+.input-fintech {
+  @apply w-full pl-14 pr-8 py-5 bg-slate-50 border border-slate-100 rounded-3xl focus:ring-4 focus:ring-primary-50 transition-all font-bold text-slate-800 placeholder:text-slate-300;
+}
+
+.icon-badge {
+  @apply absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none transition-colors;
+}
+
+.approval-badge {
+  @apply inline-flex items-center gap-2 px-5 py-2 bg-green-100/50 text-green-700 rounded-2xl text-xs font-black uppercase tracking-widest border border-green-100;
+}

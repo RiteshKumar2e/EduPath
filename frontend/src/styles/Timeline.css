@@ -1,0 +1,15 @@
+.timeline-container {
+  @apply pt-24 pb-12 px-6 bg-[#FDFDFF] min-h-screen;
+}
+
+.timeline-step-card {
+  @apply bg-white p-8 rounded-[40px] border border-slate-100 shadow-premium transition-all duration-300 hover:shadow-2xl;
+}
+
+.timeline-line {
+  @apply absolute left-8 top-0 bottom-0 w-1.5 bg-slate-100 rounded-full hidden md:block;
+}
+
+.timeline-icon-hub {
+  @apply w-16 h-16 rounded-3xl z-10 shrink-0 shadow-lg flex items-center justify-center;
+}

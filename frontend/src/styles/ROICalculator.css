@@ -1,0 +1,15 @@
+.roi-container {
+  @apply pt-24 pb-12 px-6 min-h-screen bg-[#FDFDFF];
+}
+
+.calc-card {
+  @apply bg-white p-10 rounded-[48px] border border-slate-100 shadow-premium w-full transition-all duration-500 hover:shadow-2xl flex flex-col;
+}
+
+.roi-stats-box {
+  @apply p-8 bg-slate-900 rounded-[40px] text-white shadow-2xl relative overflow-hidden;
+}
+
+.chart-container-roi {
+  @apply bg-white p-8 rounded-[40px] border border-slate-100 shadow-premium mt-8;
+}
