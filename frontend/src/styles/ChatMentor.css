@@ -1,27 +1,33 @@
+@import './globals.css';
+
 /* ============================================================================
-  CHAT MENTOR PAGE - CONVERSATION INTERFACE
+  CHAT MENTOR PAGE - CONVERSATION INTERFACE WITH PREMIUM GLASS
 ============================================================================ */
 
 .chat-container {
   @apply relative pt-28 pb-6 px-6 md:px-12 h-screen flex flex-col bg-white overflow-hidden;
-  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(240,249,255,0.3) 100%);
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(240,249,255,0.4) 100%);
 }
 
 /* ============================================================================
-  CHAT BOX - MAIN CONTAINER
+  CHAT BOX - MAIN CONTAINER WITH GLASS EFFECT
 ============================================================================ */
 
 .chat-box-main {
-  @apply flex-1 flex flex-col bg-white/70 backdrop-blur-lg rounded-[48px] shadow-soft-2xl border border-white/40 overflow-hidden relative;
+  @apply flex-1 flex flex-col bg-white/80 backdrop-blur-lg rounded-[48px] shadow-soft-2xl border border-white/40 overflow-hidden relative;
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.08),
+    0 0 40px -10px rgba(14, 165, 233, 0.1);
 }
 
 .chat-box-main::before {
   content: '';
-  @apply absolute -top-1/2 -right-1/3 w-96 h-96 bg-gradient-to-br from-primary-100/20 to-transparent rounded-full blur-3xl pointer-events-none;
+  @apply absolute -top-1/2 -right-1/3 w-96 h-96 bg-gradient-to-br from-primary-100/15 to-transparent rounded-full blur-3xl pointer-events-none;
+  animation: float-slow 25s ease-in-out infinite;
 }
 
 /* ============================================================================
-  MESSAGES AREA
+  MESSAGES AREA - SMOOTH SCROLLING
 ============================================================================ */
 
 .messages-area {
@@ -42,7 +48,7 @@
 }
 
 /* ============================================================================
-  MESSAGE BUBBLES
+  MESSAGE BUBBLES - PREMIUM STYLING
 ============================================================================ */
 
 .message-bubble {
@@ -50,7 +56,7 @@
 }
 
 .message-user {
-  @apply self-end bg-gradient-to-br from-primary-600 to-primary-500 text-white rounded-tr-none shadow-lg;
+  @apply self-end bg-gradient-to-br from-primary-600 to-primary-500 text-white rounded-tr-none shadow-lg hover:shadow-xl;
   animation: slide-up 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
@@ -60,13 +66,16 @@
 }
 
 .message-ai {
-  @apply self-start bg-white/70 backdrop-blur-md text-slate-800 rounded-tl-none border border-white/40 shadow-glass;
+  @apply self-start bg-white/80 backdrop-blur-md text-slate-800 rounded-tl-none border border-white/40 shadow-glass hover:shadow-soft-lg;
   animation: slide-up 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s backwards;
+  box-shadow: 
+    0 1px 3px rgba(0,0,0,0.12),
+    0 8px 20px rgba(0,0,0,0.08);
 }
 
 .message-ai::after {
   content: '';
-  @apply absolute -bottom-1 -left-2 w-4 h-4 bg-white/70 rounded-full opacity-70;
+  @apply absolute -bottom-1 -left-2 w-4 h-4 bg-white/80 rounded-full opacity-70;
 }
 
 .message-content {
@@ -84,7 +93,7 @@
 }
 
 /* ============================================================================
-  INPUT AREA
+  INPUT AREA - PREMIUM INTERACTION
 ============================================================================ */
 
 .input-area {
@@ -97,7 +106,7 @@
 }
 
 .input-field {
-  @apply flex-1 px-6 py-4 bg-white/70 border border-slate-100 rounded-[28px] focus:outline-none focus:ring-4 focus:ring-primary-100/50 focus:border-primary-200 transition-all duration-300 font-medium text-slate-800 placeholder:text-slate-400 shadow-sm resize-none;
+  @apply flex-1 px-6 py-4 bg-white/80 border border-slate-100 rounded-[28px] focus:outline-none focus:ring-4 focus:ring-primary-100/50 focus:border-primary-200 transition-all duration-300 font-medium text-slate-800 placeholder:text-slate-400 shadow-sm resize-none hover:bg-white/90;
   max-height: 120px;
 }
 
@@ -118,7 +127,7 @@
 }
 
 /* ============================================================================
-  QUICK ACTION BUTTONS
+  QUICK ACTION BUTTONS - MICRO-INTERACTIONS
 ============================================================================ */
 
 .quick-actions {
@@ -130,7 +139,7 @@
 }
 
 /* ============================================================================
-  TYPING INDICATOR
+  TYPING INDICATOR - ANIMATED DOTS
 ============================================================================ */
 
 .typing-indicator {

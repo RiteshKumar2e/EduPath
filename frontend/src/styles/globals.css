@@ -1,0 +1,637 @@
+/* ============================================================================
+  GLOBAL ANIMATIONS - FRAMER MOTION & GSAP COMPATIBLE
+============================================================================ */
+
+/* Slide animations */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-left {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-right {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Fade animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Scale animations */
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scale-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+/* Bounce animations */
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Float animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(20px);
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+/* Glow animations */
+@keyframes glow-pulse {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes glow-expand {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* 3D animations */
+@keyframes rotate-3d {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotateX(5deg) rotateY(5deg);
+  }
+}
+
+@keyframes tilt-in {
+  from {
+    opacity: 0;
+    transform: perspective(1000px) rotateY(-20deg) rotateX(20deg) translateZ(0);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(1000px) rotateY(0deg) rotateX(0deg) translateZ(0);
+  }
+}
+
+/* Shimmer/Shine animations */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes shine {
+  0% {
+    background-position: -1200px;
+  }
+  100% {
+    background-position: 1200px;
+  }
+}
+
+/* Mesh shift for gradient backgrounds */
+@keyframes mesh-shift {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+/* Pulse animations */
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes pulse-scale {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Rotate animations */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-fast {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Wave animations */
+@keyframes wave {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-5px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(-5px);
+  }
+}
+
+/* ============================================================================
+  UTILITY ANIMATION CLASSES
+============================================================================ */
+
+.animate-slide-up {
+  animation: slide-up 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.animate-slide-down {
+  animation: slide-down 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.animate-slide-left {
+  animation: slide-left 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.animate-slide-right {
+  animation: slide-right 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 10s ease-in-out infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.animate-tilt-in {
+  animation: tilt-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s ease-in-out infinite;
+}
+
+.animate-pulse-scale {
+  animation: pulse-scale 2s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
+}
+
+.animate-spin-fast {
+  animation: spin-fast 1s linear infinite;
+}
+
+.animate-wave {
+  animation: wave 2s ease-in-out infinite;
+}
+
+/* ============================================================================
+  TRANSITION UTILITIES
+============================================================================ */
+
+.transition-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-smooth-lg {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-smooth-xl {
+  transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================================
+  3D PERSPECTIVE UTILITIES
+============================================================================ */
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.perspective-500 {
+  perspective: 500px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* ============================================================================
+  GLASS & PREMIUM EFFECTS
+============================================================================ */
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.glass-effect-premium {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.glass-effect-light {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.glass-border {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.glass-border-premium {
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* ============================================================================
+  GRADIENT OVERLAYS & ACCENTS
+============================================================================ */
+
+.gradient-text-primary {
+  background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-vibrant {
+  background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 50%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-bg-subtle {
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(240,249,255,0.4) 100%);
+}
+
+.gradient-bg-light {
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(224,242,254,0.3) 100%);
+}
+
+.gradient-overlay {
+  position: relative;
+  overflow: hidden;
+}
+
+.gradient-overlay::before {
+  content: '';
+  @apply absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500;
+  background: radial-gradient(circle at 30% 30%, rgba(14, 165, 233, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* ============================================================================
+  BLUR & BACKDROP FILTERS
+============================================================================ */
+
+.blur-sm {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.blur-md {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.blur-lg {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.blur-xl {
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+}
+
+/* ============================================================================
+  HOVER EFFECTS
+============================================================================ */
+
+.hover-lift {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+}
+
+.hover-glow {
+  transition: all 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 30px -5px rgba(14, 165, 233, 0.3);
+}
+
+.hover-scale {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-scale-sm:hover {
+  transform: scale(1.02);
+}
+
+.hover-tilt {
+  transition: transform 0.3s ease;
+}
+
+.hover-tilt:hover {
+  transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
+}
+
+/* ============================================================================
+  MICRO-INTERACTIONS
+============================================================================ */
+
+.interactive-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.interactive-ripple::after {
+  content: '';
+  @apply absolute top-1/2 left-1/2 w-0 h-0 -translate-x-1/2 -translate-y-1/2 bg-white rounded-full opacity-0;
+  transition: width 0.6s, height 0.6s, opacity 0.6s;
+}
+
+.interactive-ripple:active::after {
+  @apply w-96 h-96 opacity-20;
+}
+
+.interactive-focus-ring {
+  transition: all 0.2s ease;
+}
+
+.interactive-focus-ring:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.2), 0 0 0 8px rgba(14, 165, 233, 0.1);
+}
+
+/* ============================================================================
+  SCROLL ANIMATIONS (For GSAP ScrollTrigger)
+============================================================================ */
+
+.scroll-trigger-fade {
+  opacity: 0;
+}
+
+.scroll-trigger-fade.in {
+  opacity: 1;
+}
+
+.scroll-trigger-slide {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.scroll-trigger-slide.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-trigger-scale {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.scroll-trigger-scale.in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ============================================================================
+  RESPONSIVE HELPERS
+============================================================================ */
+
+@media (max-width: 768px) {
+  .animate-slide-up,
+  .animate-slide-down,
+  .animate-slide-left,
+  .animate-slide-right {
+    animation-duration: 0.4s;
+  }
+}
+
+/* ============================================================================
+  PREMIUM FILTER EFFECTS
+============================================================================ */
+
+.filter-grayscale {
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+.filter-grayscale:hover {
+  filter: grayscale(0%);
+}
+
+.filter-blur {
+  filter: blur(2px);
+}
+
+.filter-brightness {
+  filter: brightness(1.1);
+}
+
+/* ============================================================================
+  SELECTION & HIGHLIGHT
+============================================================================ */
+
+::selection {
+  background-color: rgba(14, 165, 233, 0.2);
+  color: #0c4a6e;
+}
+
+::-moz-selection {
+  background-color: rgba(14, 165, 233, 0.2);
+  color: #0c4a6e;
+}
+
+/* ============================================================================
+  SCROLLBAR STYLING
+============================================================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(241, 245, 249, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(14, 165, 233, 0.3);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(14, 165, 233, 0.6);
+}
+
+/* ============================================================================
+  PRINT STYLES
+============================================================================ */
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
