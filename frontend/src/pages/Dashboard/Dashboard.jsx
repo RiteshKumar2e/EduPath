@@ -16,7 +16,9 @@ import {
   Flame,
   Bell,
   ChevronRight,
-  Sparkles
+  Sparkles,
+  Copy,
+  Share2
 } from 'lucide-react'
 import { AreaChart,Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, BarChart, Bar, Legend } from 'recharts'
 import Button from '../../components/ui/premium/Button'
@@ -224,6 +226,39 @@ const Dashboard = () => {
                   ))}
                 </div>
               </Card>
+
+              {/* Engagement Loop - Daily AI Quiz */}
+              <Card className="p-8 bg-gradient-to-br from-primary-600 to-indigo-700 text-white border-0 relative overflow-hidden group">
+                <div className="absolute right-0 top-0 w-48 h-48 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-white/20 transition-all"></div>
+                <div className="relative z-10">
+                  <div className="flex items-start justify-between mb-8">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center shadow-lg backdrop-blur-md">
+                        <Zap size={24} className="text-amber-300" />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-black">Daily AI Brain Stimulator</h3>
+                        <p className="text-xs font-bold text-primary-100/70 uppercase tracking-widest mt-1">Earn +50 Points Today</p>
+                      </div>
+                    </div>
+                    <Badge className="bg-white/20 text-white border-0">High Streak! 🔥</Badge>
+                  </div>
+                  
+                  <div className="bg-white/10 backdrop-blur-md p-5 rounded-2xl border border-white/10 mb-8">
+                    <p className="font-bold text-lg mb-4">"Which German city offers the highest ROI for AI-related master's programs in 2024?"</p>
+                    <div className="grid grid-cols-2 gap-3">
+                      {['Munich', 'Berlin', 'Zurich', 'Aachen'].map((city, idx) => (
+                        <button key={idx} className="p-3 bg-white/5 hover:bg-white/20 border border-white/10 rounded-xl text-sm font-bold transition-all text-left">
+                          {city}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  <p className="flex items-center gap-2 text-xs font-medium text-primary-100/80 italic">
+                    <Sparkles size={14} /> 4,200 students answered this correctly today.
+                  </p>
+                </div>
+              </Card>
             </div>
 
             {/* Sidebar - Right Column */}
@@ -298,6 +333,24 @@ const Dashboard = () => {
                   ))}
                 </div>
               </Section>
+
+              {/* Viral Loop - Study Squad Referral */}
+              <Card className="p-6 bg-slate-50 border-2 border-dashed border-primary-200 flex flex-col items-center text-center">
+                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg mb-6 ring-4 ring-primary-50">
+                  <Gift size={32} className="text-primary-600" />
+                </div>
+                <h4 className="text-lg font-black text-slate-900 mb-2">Invite Your Study Squad</h4>
+                <p className="text-xs text-slate-500 font-medium mb-8 leading-relaxed">
+                  Earn <span className="text-primary-600 font-black">500 Scholar Points</span> and a 20% discount on processing fees for every friend who joins.
+                </p>
+                <div className="flex w-full gap-2">
+                  <div className="flex-1 px-4 py-3 bg-white border border-slate-200 rounded-xl text-[10px] font-black font-mono text-slate-400 flex items-center justify-between overflow-hidden">
+                    EDUPATH-ANMOL-2024
+                    <Copy size={14} className="cursor-pointer hover:text-primary-600 transition-colors" />
+                  </div>
+                  <Button variant="primary" size="md" icon={Share2} iconPosition="left"></Button>
+                </div>
+              </Card>
             </div>
           </div>
         </div>
