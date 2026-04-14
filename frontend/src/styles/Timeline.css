@@ -1,15 +1,36 @@
+@import './globals.css';
+
+/* ============================================================================
+  TIMELINE PAGE - SEQUENTIAL PROGRESS VISUALIZATION
+============================================================================ */
+
 .timeline-container {
-  @apply pt-24 pb-12 px-6 bg-[#FDFDFF] min-h-screen;
+  @apply pt-24 pb-12 px-6 bg-gradient-to-br from-white via-slate-50/50 to-white min-h-screen;
 }
 
 .timeline-step-card {
-  @apply bg-white p-8 rounded-[40px] border border-slate-100 shadow-premium transition-all duration-300 hover:shadow-2xl;
+  @apply bg-white/85 backdrop-blur-md p-8 rounded-[40px] border border-white/50 shadow-premium transition-all duration-300 hover:shadow-soft-2xl perspective-1000;
+  box-shadow: 
+    0 10px 30px -10px rgba(0, 0, 0, 0.04),
+    0 20px 50px -20px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.8);
+  animation: slide-up 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  opacity: 0;
 }
 
+.timeline-step-card:nth-child(1) { animation-delay: 0.1s; }
+.timeline-step-card:nth-child(2) { animation-delay: 0.2s; }
+.timeline-step-card:nth-child(3) { animation-delay: 0.3s; }
+.timeline-step-card:nth-child(4) { animation-delay: 0.4s; }
+.timeline-step-card:nth-child(5) { animation-delay: 0.5s; }
+
 .timeline-line {
-  @apply absolute left-8 top-0 bottom-0 w-1.5 bg-slate-100 rounded-full hidden md:block;
+  @apply absolute left-8 top-0 bottom-0 w-1.5 bg-gradient-to-b from-primary-300 via-primary-400 to-primary-300 rounded-full hidden md:block;
+  box-shadow: 0 0 20px -5px rgba(14, 165, 233, 0.3);
+  animation: slide-down 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 .timeline-icon-hub {
-  @apply w-16 h-16 rounded-3xl z-10 shrink-0 shadow-lg flex items-center justify-center;
+  @apply w-16 h-16 rounded-3xl z-10 shrink-0 shadow-soft-xl flex items-center justify-center bg-gradient-to-br from-primary-100 to-primary-50 border border-primary-200 text-primary-600 font-bold transition-all duration-300;
+  animation: scale-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
