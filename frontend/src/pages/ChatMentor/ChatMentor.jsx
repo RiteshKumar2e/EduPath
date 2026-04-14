@@ -16,7 +16,6 @@ import {
   Banknote,
   Search,
   User,
-  Robot as RobotIcon,
   Bot
 } from 'lucide-react'
 import Button from '../../components/ui/premium/Button'
