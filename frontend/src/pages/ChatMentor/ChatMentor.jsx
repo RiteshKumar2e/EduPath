@@ -1,53 +1,193 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { BrainCircuit, Send, User, Sparkles, Plus } from 'lucide-react'
-import '../../styles/ChatMentor.css'
+import {
+  Send,
+  RefreshCw,
+  Settings,
+  MessageSquare,
+  ThumbsUp,
+  ThumbsDown,
+  Copy,
+  Share2,
+  Plus,
+} from 'lucide-react'
+import Button from '../../components/ui/premium/Button'
+import { Card, InputField, Badge, Section, Divider } from '../../components/ui/premium/index'
+import { DashboardLayout } from '../../components/layout/PremiumLayout'
 
 const ChatMentor = () => {
   const [messages, setMessages] = useState([
-    { role: 'assistant', text: "Hello! I'm your EduPath AI Mentor. How can I help you today?" }
+    {
+      id: 1,
+      type: 'ai',
+      content: 'Hello! I\'m your AI mentor. I\'m here to answer any questions about universities, applications, admissions, financing, and your career path. What would you like to know?',
+      timestamp: new Date(Date.now() - 5 * 60000),
+    },
   ])
   const [input, setInput] = useState('')
+  const [loading, setLoading] = useState(false)
 
-  const handleSend = (e) => {
-    e.preventDefault()
+  const suggestedQuestions = [
+    'What universities match my profile?',
+    'How do I improve my admission chances?',
+    'What loan options are available?',
+    'How do I prepare for the GRE?',
+  ]
+
+  const handleSend = () => {
     if (!input.trim()) return
-    setMessages(prev => [...prev, { role: 'user', text: input }])
+    
+    // Add user message
+    const userMessage = {
+      id: messages.length + 1,
+      type: 'user',
+      content: input,
+      timestamp: new Date(),
+    }
+    setMessages(prev => [...prev, userMessage])
     setInput('')
+    setLoading(true)
+
+    // Simulate AI response
+    setTimeout(() => {
+      const aiMessage = {
+        id: messages.length + 2,
+        type: 'ai',
+        content: 'This is a simulated response. In production, this would call your AI backend. Your question was: "' + input + '". I\'m here to help with any education-related queries!',
+        timestamp: new Date(),
+      }
+      setMessages(prev => [...prev, aiMessage])
+      setLoading(false)
+    }, 1000)
+  }
+
+  const user = {
+    name: 'Anmol',
+    email: 'anmol@example.com',
+    avatar: 'https://ui-avatars.com/api/?name=Anmol&background=0b7ee5&color=fff',
   }
 
   return (
-    <div className="chat-container">
-      <div className="chat-box-main">
-        <div className="px-10 py-8 border-b border-slate-100 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="w-14 h-14 bg-primary-600 rounded-2xl flex items-center justify-center text-white shadow-xl">
-              <BrainCircuit size={28} />
-            </div>
-            <h2 className="text-2xl font-black text-slate-800">AI Mentor</h2>
-          </div>
-        </div>
+    <DashboardLayout user={user}>
+      <div className="bg-slate-50 min-h-screen py-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Section title="AI Mentor Chat" subtitle="24/7 guidance for your educational journey">
+            <div className="grid lg:grid-cols-4 gap-6">
+              {/* Chat Area */}
+              <div className="lg:col-span-3">
+                <Card className="p-0 flex flex-col h-[600px]">
+                  {/* Messages */}
+                  <div className="flex-1 p-6 space-y-4 overflow-y-auto">
+                    {messages.length === 0 ? (
+                      <div className="h-full flex items-center justify-center">
+                        <div className="text-center">
+                          <MessageSquare size={48} className="text-slate-300 mx-auto mb-4" />
+                          <p className="text-slate-600">Start a conversation with your AI mentor</p>
+                        </div>
+                      </div>
+                    ) : (
+                      messages.map((msg) => (
+                        <motion.div
+                          key={msg.id}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}
+                        >
+                          <div
+                            className={`max-w-xs lg:max-w-md px-4 py-3 rounded-lg ${
+                              msg.type === 'user'
+                                ? 'bg-primary-600 text-white rounded-br-none'
+                                : 'bg-slate-100 text-slate-900 rounded-bl-none'
+                            }`}
+                          >
+                            <p className="text-sm">{msg.content}</p>
+                            <p className={`text-xs mt-2 ${msg.type === 'user' ? 'text-primary-100' : 'text-slate-500'}`}>
+                              {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                            </p>
+                          </div>
+                        </motion.div>
+                      ))
+                    )}
+                    {loading && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="flex justify-start"
+                      >
+                        <div className="bg-slate-100 text-slate-900 px-4 py-3 rounded-lg rounded-bl-none">
+                          <div className="flex gap-2">
+                            <div className="w-2 h-2 bg-slate-400 rounded-full animate-pulse" />
+                            <div className="w-2 h-2 bg-slate-400 rounded-full animate-pulse delay-100" />
+                            <div className="w-2 h-2 bg-slate-400 rounded-full animate-pulse delay-200" />
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </div>
 
-        <div className="flex-1 overflow-y-auto p-10 space-y-8">
-          {messages.map((msg, i) => (
-            <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-               <div className={`message-bubble ${msg.role === 'user' ? 'message-user' : 'message-ai'}`}>
-                 {msg.text}
-               </div>
-            </div>
-          ))}
-        </div>
+                  <Divider className="my-0" />
 
-        <div className="p-10 border-t border-slate-100">
-           <form onSubmit={handleSend} className="relative">
-             <input value={input} onChange={(e) => setInput(e.target.value)} type="text" placeholder="Ask AI anything..." className="w-full px-8 py-6 bg-slate-50 border border-slate-100 rounded-[32px] font-bold text-slate-800 focus:outline-none" />
-             <button type="submit" className="absolute right-4 top-1/2 -translate-y-1/2 p-4 bg-primary-600 text-white rounded-2xl shadow-xl">
-               <Send size={20} />
-             </button>
-           </form>
+                  {/* Input Area */}
+                  <div className="p-4 bg-white">
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        placeholder="Ask me anything..."
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}
+                        onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+                        className="flex-1 px-3 py-2 rounded-lg border-2 border-slate-200 focus:border-primary-500 focus:outline-none text-sm"
+                      />
+                      <Button
+                        variant="primary"
+                        size="md"
+                        icon={Send}
+                        onClick={handleSend}
+                        disabled={!input.trim() || loading}
+                      />
+                    </div>
+                  </div>
+                </Card>
+              </div>
+
+              {/* Sidebar */}
+              <div className="space-y-4">
+                {/* Quick Questions */}
+                <Section title="Suggestions">
+                  <div className="space-y-2">
+                    {suggestedQuestions.map((q, i) => (
+                      <Card
+                        key={i}
+                        className="p-3 cursor-pointer hover:bg-primary-50 transition-colors"
+                        onClick={() => {
+                          setInput(q)
+                        }}
+                      >
+                        <p className="text-sm font-medium text-slate-900 line-clamp-2">{q}</p>
+                      </Card>
+                    ))}
+                  </div>
+                </Section>
+
+                {/* Chat History */}
+                <Section title="Recent Chats">
+                  <div className="space-y-2">
+                    <Card className="p-3">
+                      <p className="text-sm font-medium text-slate-900">Universities in UK</p>
+                      <p className="text-xs text-slate-500 mt-1">Today</p>
+                    </Card>
+                    <Card className="p-3">
+                      <p className="text-sm font-medium text-slate-900">Loan Eligibility</p>
+                      <p className="text-xs text-slate-500 mt-1">Yesterday</p>
+                    </Card>
+                  </div>
+                </Section>
+              </div>
+            </div>
+          </Section>
         </div>
       </div>
-    </div>
+    </DashboardLayout>
   )
 }
 
